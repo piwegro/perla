@@ -1,0 +1,40 @@
+/* GLOBAL VARIABLES */
+:root {
+    // Global colors
+    --background: #f8f9fa;
+
+    // Components
+    --component-bg: #ffffff;
+    --button-weight: var(--font-semibold);
+    --box-radius: 4px;
+
+    // Text colors
+    --text-900: #0f2338;
+    --text-800: #0f23384b;
+
+    // Brand colors
+    --brand-900: #556ff6;
+
+    // Font weights
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+
+    // Breakpoints
+    --br-sm: 30em;
+    --br-md: 48em;
+    --br-lg: 62em;
+    --br-xl: 80em;
+    --br-2xl: 96em;
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+
+    font-weight: 400;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+}

@@ -1,5 +1,5 @@
 import { Open_Sans } from '@next/font/google'
-import '../styles/globals.css'
+import '../styles/globals.scss'
 
 const font = Open_Sans()
 
