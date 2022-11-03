@@ -1,0 +1,18 @@
+.content {
+    width: min(1200px, 90%);
+    margin-top: 130px;
+}
+
+.container {
+    width: min(1200px, 90%);
+    margin: 0 auto;
+}
+
+.flex {
+    display: flex;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
