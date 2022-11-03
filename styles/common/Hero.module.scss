@@ -1,0 +1,35 @@
+.hero {
+    width: 100%;
+
+    background: var(--brand-900);
+    color: var(--background);
+
+    margin-top: 72px;
+    padding: 2rem 0;
+
+    font-size: 2rem;
+
+    h1 {
+        font-weight: 400;
+        b {
+            font-weight: 500;
+        }
+    }
+
+    div {
+        display: flex;
+        flex-direction: row;
+
+        svg {
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .hero {
+        div svg {
+            display: none;
+        }
+    }
+}
