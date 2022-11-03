@@ -1,4 +1,6 @@
 import React from 'react'
+import Link from 'next/link'
+
 import styles from '../../styles/common/Button.module.scss'
 
 function Button(props) {
@@ -7,9 +9,9 @@ function Button(props) {
     switch (type) {
         case 'anchor':
             return (
-                <a className={styles.button} href={href}>
+                <Link className={styles.button} href={href || '/'}>
                     {children}
-                </a>
+                </Link>
             )
         case 'button':
             return (

@@ -44,7 +44,11 @@ const DesktopNav = () => {
         <div className={styles.desktopNav}>
             {NAV_ITEMS.map(item => {
                 if (item.type?.toLowerCase() === 'button')
-                    return <Button type={'anchor'}>{item?.label}</Button>
+                    return (
+                        <Button type={'anchor'} href={item.href}>
+                            {item?.label}
+                        </Button>
+                    )
                 return (
                     <Link href={item.href} key={item.label}>
                         {item.label}
@@ -70,7 +74,6 @@ const MobileNav = expanded => {
 }
 
 const ExpandButton = props => {
-    console.log(props)
     return (
         <div className={styles.expandButton}>
             {props.state.expanded ? (
