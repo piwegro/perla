@@ -2,8 +2,9 @@
 const nextConfig = {
     experimental: {
         appDir: true,
-        fontLoaders: [{ loader: '@next/font/google', options: { subsets: ['latin'] } }]
+        fontLoaders: [{ loader: '@next/font/google', options: { subsets: ['latin'] } }],
     },
+    output: 'standalone',
 }
 
 module.exports = nextConfig
