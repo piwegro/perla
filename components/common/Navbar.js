@@ -20,7 +20,7 @@ const NAV_ITEMS = [
     },
     {
         label: 'Dodaj ogłoszenie',
-        href: '/add',
+        href: '/offers/add',
         type: 'button',
     },
 ]
@@ -30,7 +30,9 @@ export default function Navbar() {
     return (
         <div className={styles.navbar}>
             <div className={styles.content}>
-                <Logo />
+                <Link href={'/'}>
+                    <Logo />
+                </Link>
                 <DesktopNav />
                 <ExpandButton state={{ expanded, setExpanded }} />
             </div>
@@ -45,13 +47,17 @@ const DesktopNav = () => {
             {NAV_ITEMS.map(item => {
                 if (item.type?.toLowerCase() === 'button')
                     return (
-                        <Button type={'anchor'} href={item.href}>
+                        <Button
+                            element={'anchor'}
+                            href={item.href}
+                            key={item.label}
+                            data-btn-type={'nav'}>
                             {item?.label}
                         </Button>
                     )
                 return (
                     <Link href={item.href} key={item.label}>
-                        {item.label}
+                        {item?.label}
                     </Link>
                 )
             })}
