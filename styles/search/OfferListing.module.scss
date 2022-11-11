@@ -1,0 +1,50 @@
+.offerListing {
+    display: flex;
+
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: space-between;
+
+    height: 8rem;
+    width: 100%;
+
+    background: var(--component-bg);
+
+    border-radius: 4px;
+
+    padding: 1rem 2rem;
+}
+
+.offerDesc {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        b {
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+    }
+
+    img {
+        border-radius: 4px;
+    }
+}
+
+.offerRight {
+    display: flex;
+    flex-direction: row;
+    gap: 8rem;
+    align-items: center;
+}
+
+.price {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
