@@ -4,7 +4,7 @@
     left: 0;
     right: 0;
 
-    height: 72px;
+    height: 4.5rem;
 
     background: var(--background);
     color: var(--text-900);
@@ -38,6 +38,10 @@
         color: var(--text-900);
 
         font-weight: 500;
+
+        &[data-btn-type='nav'] {
+            color: #ffffff;
+        }
     }
 }
 

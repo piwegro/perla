@@ -1,10 +1,18 @@
 .button {
     background: var(--brand-900);
-    color: var(--component-bg) !important;
+    color: #ffffff;
 
+    min-height: 44px;
+    height: auto;
+    margin: auto 0;
+
+    border: none;
+    border-radius: 4px;
+
+    font-size: 1rem;
     font-weight: 500;
 
-    border-radius: 4px;
+    text-decoration: none;
 
     padding: 0.7rem 1rem;
 }

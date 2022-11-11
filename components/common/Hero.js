@@ -1,10 +1,15 @@
-import styles from '../styles/common/Hero.module.scss'
-import { container } from '../styles/common/Grid.module.scss'
+import styles from '../../styles/common/Hero.module.scss'
+import { container } from '../../styles/common/Grid.module.scss'
+import SearchBox from '../search/SearchBox'
 
 function Hero({ page, children }) {
+    let showSearch = true
     return (
         <div className={styles.hero}>
-            <div className={container}>{page === 'main' ? <MainPageHero /> : <>{children}</>}</div>
+            <div className={container}>
+                <div>{page === 'main' ? <MainPageHero /> : <>{children}</>}</div>
+                {showSearch ? <SearchBox /> : null}
+            </div>
         </div>
     )
 }
@@ -13,7 +18,7 @@ const MainPageHero = () => {
     return (
         <>
             <h1>
-                Wymieniaj się z innymi <b>studentami</b> za <b>walutę&nbsp;studencką</b>!
+                Wymieniaj się z innymi <b>studentami</b> za <b>walutę studencką</b>!
             </h1>
             <svg
                 width='401'

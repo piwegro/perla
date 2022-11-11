@@ -1,14 +1,13 @@
-import { Open_Sans } from '@next/font/google'
 import '../styles/globals.scss'
 import Navbar from '../components/common/Navbar'
-
-const openSans = Open_Sans()
+import openSans from '../styles/common/Font'
 
 export default function RootLayout({ children }) {
     return (
         <html lang='pl' className={openSans.className}>
             <head>
                 <title>Piwegro</title>
+                <meta name='viewport' content='width=device-width' />
             </head>
             <body>
                 <Navbar />

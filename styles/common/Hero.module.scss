@@ -5,11 +5,11 @@
     color: var(--background);
 
     margin-top: 72px;
-    padding: 2rem 0;
-
-    font-size: 2rem;
+    padding: 2rem 0 4rem;
 
     h1 {
+        font-size: 4rem;
+
         font-weight: 400;
         b {
             font-weight: 500;
@@ -17,6 +17,11 @@
     }
 
     div {
+        display: flex;
+        flex-direction: column;
+    }
+
+    div > div {
         display: flex;
         flex-direction: row;
 
@@ -26,6 +31,11 @@
     }
 }
 
+@media screen and (max-width: 480px) {
+    .hero h1 {
+        font-size: 10vw;
+    }
+}
 @media screen and (max-width: 992px) {
     .hero {
         div svg {
