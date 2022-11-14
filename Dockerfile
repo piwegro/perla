@@ -14,7 +14,7 @@ RUN \
 
 FROM node:16-alpine AS build-and-run
 WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /src/app/node_modules ./node_modules
 COPY . .
 
 ENV NODE_ENV production
