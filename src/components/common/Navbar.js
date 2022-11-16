@@ -30,7 +30,7 @@ export default function Navbar() {
     return (
         <div className={styles.navbar}>
             <div className={styles.content}>
-                <Link href={'/'}>
+                <Link href={'/'} aria-label={'Piwegro'}>
                     <Logo />
                 </Link>
                 <DesktopNav />
