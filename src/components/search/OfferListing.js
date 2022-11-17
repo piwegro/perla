@@ -1,7 +1,7 @@
 import Button from '../common/Button'
 import styles from '../../styles/search/OfferListing.module.scss'
 
-function OfferListing(props) {
+const OfferListing = props => {
     let { data } = props
 
     return (

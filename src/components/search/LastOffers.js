@@ -1,6 +1,6 @@
 import OfferList from './OfferList'
 
-function LastOffers(props) {
+const LastOffers = () => {
     // TODO: This is only a placeholder. Final version should fetch those items from API
     return (
         <>

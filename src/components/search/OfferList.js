@@ -1,7 +1,7 @@
 import OfferListing from './OfferListing'
 import styles from '../../styles/search/OfferList.module.scss'
 
-function OfferList(props) {
+const OfferList = () => {
     const offers = [
         // TODO: This is only a placeholder. Final version should get items from props
         {
