@@ -2,11 +2,11 @@ import styles from '../../styles/common/Hero.module.scss'
 import { container } from '../../styles/common/Grid.module.scss'
 import SearchBox from '../search/SearchBox'
 
-const Hero = ({ page, children, showSearch }) => {
+const Hero = ({ page, children, showSearch, center }) => {
     let showSearchBox = (showSearch ?? false) || page === 'main'
     return (
         <div className={styles.hero}>
-            <div className={container}>
+            <div className={`${container} ${center ? styles.center : ''}`}>
                 <div>{page === 'main' ? <MainPageHero /> : <>{children}</>}</div>
                 {showSearchBox ? <SearchBox /> : null}
             </div>
