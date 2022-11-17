@@ -1,6 +1,7 @@
 import '../styles/globals.scss'
 import Navbar from '../components/common/Navbar'
 import openSans from '../styles/common/Font'
+import Footer from '../components/common/Footer'
 
 const RootLayout = ({ children }) => {
     return (
@@ -12,6 +13,7 @@ const RootLayout = ({ children }) => {
             <body>
                 <Navbar />
                 {children}
+                <Footer />
             </body>
         </html>
     )
