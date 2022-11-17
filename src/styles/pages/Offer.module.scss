@@ -1,0 +1,58 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 32px;
+    width: 100%;
+    margin: 85px 0;
+}
+
+.box {
+    background: var(--component-bg);
+    border-radius: 4px;
+    min-height: 600px;
+    padding: 2rem;
+}
+
+.mainBox {
+    grid-column: span 8;
+}
+
+.sideBox {
+    grid-column: span 4;
+}
+
+.userBox {
+    @extend .sideBox;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sellerDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+
+    gap: 0.5rem;
+
+    h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+}
+
+.sellerAvatar {
+    width: 128px;
+    height: 128px;
+    max-width: 70%;
+}
+
+.otherOffers {
+    color: var(--text-900);
+    text-decoration: none;
+    font-size: 0.875rem;
+}
