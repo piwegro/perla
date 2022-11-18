@@ -2,6 +2,7 @@
     display: flex;
 
     flex-direction: row;
+    gap: 2rem;
 
     align-items: center;
     justify-content: space-between;
@@ -34,17 +35,43 @@
 
     img {
         border-radius: 4px;
+        width: 96px;
+        height: 96px;
     }
 }
 
 .offerRight {
     display: flex;
     flex-direction: row;
-    gap: 8rem;
+    justify-content: space-between;
     align-items: center;
+    width: 30%;
 }
 
 .price {
     font-size: 1.25rem;
     font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+    .offerListing {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .offerDesc {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        div {
+            align-items: center;
+            gap: 0.5rem;
+        }
+    }
+
+    .offerRight {
+        flex-direction: column;
+        gap: 1rem;
+    }
 }

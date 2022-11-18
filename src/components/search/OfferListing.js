@@ -4,6 +4,8 @@ import styles from '../../styles/search/OfferListing.module.scss'
 const OfferListing = props => {
     let { data } = props
 
+    // TODO: Make the component responsive
+
     return (
         <div className={styles.offerListing} {...props}>
             <div className={styles.offerDesc}>
