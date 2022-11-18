@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import Hero from '../components/common/Hero'
 import { container } from '../styles/common/Grid.module.scss'
 import styles from '../styles/pages/Home.module.scss'
@@ -10,7 +11,9 @@ export default function Page() {
             <div className={styles.content}>
                 <div className={container}>
                     <h2>Ostatnie ogłoszenia</h2>
-                    <LastOffers />
+                    <Suspense fallback={<p>Ładowanie...</p>}>
+                        <LastOffers />
+                    </Suspense>
                 </div>
             </div>
         </>

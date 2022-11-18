@@ -3,16 +3,27 @@ import styles from '../../../../styles/pages/Offer.module.scss'
 import { container } from '../../../../styles/common/Grid.module.scss'
 import Button from '../../../../components/common/Button'
 import Link from 'next/link'
+import Carousel from '../../../../components/offer/Carousel'
 
 const getOffer = async id => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/offer/${id}`)
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/offer/${id}`)
 
-    // TODO: replace this with some json return
-    if (!res.ok) {
-        throw new Error(res.statusText)
+        console.log('aaaadsdas')
+
+        // TODO: replace this with some json return
+        if (!res.ok) {
+            throw new Error(res.statusText)
+        }
+
+        return res.json()
+    } catch (e) {
+        return {}
     }
+}
 
-    return res.json()
+export const preload = id => {
+    void getOffer(id)
 }
 
 const Page = async ({ params }) => {
@@ -26,7 +37,9 @@ const Page = async ({ params }) => {
             </Hero>
             <div className={container}>
                 <div className={styles.wrapper}>
-                    <div className={`${styles.box} ${styles.mainBox}`}>a</div>
+                    <div className={`${styles.box} ${styles.mainBox}`}>
+                        <Carousel offerData={offerData} />
+                    </div>
                     <div className={`${styles.box} ${styles.userBox}`}>
                         <div className={styles.sellerDetails}>
                             <img
@@ -54,3 +67,4 @@ const Page = async ({ params }) => {
 }
 
 export default Page
+export const revalidate = 60
