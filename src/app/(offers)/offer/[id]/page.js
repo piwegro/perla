@@ -9,8 +9,6 @@ const getOffer = async id => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/offer/${id}`)
 
-        console.log('aaaadsdas')
-
         // TODO: replace this with some json return
         if (!res.ok) {
             throw new Error(res.statusText)
