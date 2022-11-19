@@ -25,7 +25,7 @@ const NAV_ITEMS = [
     },
 ]
 
-export default function Navbar() {
+const Navbar = () => {
     const [expanded, setExpanded] = useState(false)
     return (
         <div className={styles.navbar}>
@@ -98,3 +98,5 @@ const ExpandButton = props => {
         </div>
     )
 }
+
+export default Navbar

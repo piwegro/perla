@@ -4,7 +4,7 @@ import Button from '../common/Button'
 import styles from '../../styles/search/SearchBox.module.scss'
 import { useRef } from 'react'
 
-function SearchBox(props) {
+const SearchBox = () => {
     const inputEl = useRef()
 
     const handleBoxClick = () => {

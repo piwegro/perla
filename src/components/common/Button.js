@@ -4,7 +4,7 @@ import openSans from '../../styles/common/Font'
 
 import styles from '../../styles/common/Button.module.scss'
 
-function Button(props) {
+const Button = props => {
     const { element, href, children } = props
 
     switch (element) {

@@ -1,4 +1,4 @@
-function Logo() {
+const Logo = () => {
     return (
         <svg
             width='198'
