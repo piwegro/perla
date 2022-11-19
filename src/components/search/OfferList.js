@@ -4,7 +4,7 @@ import styles from '../../styles/search/OfferList.module.scss'
 const OfferList = offers => {
     offers = offers?.offers ?? [
         {
-            id: '0',
+            offer_id: '0',
             title: 'Brak ofert',
             description: '',
             photo: 'https://place-hold.it/96',
