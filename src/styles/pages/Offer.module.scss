@@ -69,6 +69,10 @@
     @extend .mainImage;
 
     width: 200px;
+
+    &[data-active='true'] {
+        border: 3px solid var(--brand-900);
+    }
 }
 
 .images {

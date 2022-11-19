@@ -55,6 +55,7 @@ const Carousel = props => {
                             alt={'Miniaturka'}
                             className={styles.previewImage}
                             key={image.image_id}
+                            data-active={currentImage === image.image_id}
                         />
                     )
                 })}
