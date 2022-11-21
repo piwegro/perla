@@ -27,16 +27,20 @@ const Carousel = props => {
         }
     }
 
+    const choseImage = id => {
+        setCurrentImage(id)
+    }
+
     return (
         <div className={styles.images}>
             <div className={styles.mainImageBox}>
                 <div className={styles.controls}>
-                    <div className={styles.controlButton}>
+                    <button className={styles.controlButton}>
                         <ChevronLeft size={30} onClick={previousImage} />
-                    </div>
-                    <div className={styles.controlButton} onClick={nextImage}>
+                    </button>
+                    <button className={styles.controlButton} onClick={nextImage}>
                         <ChevronRight size={30} />
-                    </div>
+                    </button>
                 </div>
                 <img
                     src={`${
@@ -56,6 +60,9 @@ const Carousel = props => {
                             className={styles.previewImage}
                             key={image.image_id}
                             data-active={currentImage === image.image_id}
+                            onClick={() => {
+                                choseImage(image.image_id)
+                            }}
                         />
                     )
                 })}

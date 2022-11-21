@@ -15,7 +15,7 @@ const OfferList = offers => {
     return (
         <div className={styles.offerList}>
             {offers.map(offer => {
-                return <OfferListing data={offer} key={offer.id} />
+                return <OfferListing data={offer} key={offer.offer_id} />
             })}
         </div>
     )

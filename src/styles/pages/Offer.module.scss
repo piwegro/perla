@@ -57,6 +57,28 @@
     font-size: 0.875rem;
 }
 
+.offerLocation {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+    gap: 0.5rem;
+
+    h4 {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+}
+
+.offerDescription {
+    h2 {
+        margin-top: 0;
+        font-size: 1.5rem;
+    }
+    min-height: auto;
+}
+
 // Images
 .mainImage {
     aspect-ratio: 16 / 9;
@@ -112,8 +134,8 @@
 .controlButton {
     display: flex;
 
-    width: 3rem;
-    height: 3rem;
+    width: 3.25rem;
+    height: 3.25rem;
 
     background: rgba(255, 255, 255, 0.4);
     border-radius: 100%;

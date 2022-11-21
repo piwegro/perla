@@ -51,13 +51,23 @@ const Page = async ({ params }) => {
                             </Button>
 
                             <Link
-                                href={`/user/${offerData.seller.id}`}
+                                href={`/user/${offerData.seller.uid}`}
                                 className={styles.otherOffers}>
                                 Inne ogłoszenia od tej osoby
                             </Link>
                         </div>
+
+                        <div className={styles.offerLocation}>
+                            <h4>Lokalizacja ogłoszenia</h4>
+                            <span>
+                                {offerData.location ?? 'Ogłoszeniodawca nie podał lokalizacji'}
+                            </span>
+                        </div>
                     </div>
-                    <div className={`${styles.box} ${styles.mainBox}`}>c</div>
+                    <div className={`${styles.box} ${styles.mainBox} ${styles.offerDescription}`}>
+                        <h2>Opis ogłoszenia</h2>
+                        <p>{offerData.description}</p>
+                    </div>
                 </div>
             </div>
         </>
