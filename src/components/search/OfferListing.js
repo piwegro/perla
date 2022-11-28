@@ -9,7 +9,7 @@ const OfferListing = props => {
     return (
         <div className={styles.offerListing} {...props}>
             <div className={styles.offerDesc}>
-                <img src={data?.photo ?? 'https://place-hold.it/96'} alt='' />
+                <img src={data?.images[0].thumbnail ?? 'https://place-hold.it/96'} alt='' />
                 <div>
                     <b>{data?.title ?? '-'}</b>
                     <span>{data?.description ?? '-'}</span>
