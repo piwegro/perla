@@ -34,6 +34,15 @@
             width: 100%;
         }
     }
+
+    div > div > div {
+        display: flex;
+        flex-direction: column;
+
+        span {
+            font-size: 1.25rem;
+        }
+    }
 }
 
 .center {
