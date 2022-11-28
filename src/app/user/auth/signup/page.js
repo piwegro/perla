@@ -1,13 +1,18 @@
 'use client'
 
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { initFirebase } from '../../../../utils/firebase'
 import { getAuth } from 'firebase/auth'
-import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth'
+import {
+    useAuthState,
+    useCreateUserWithEmailAndPassword,
+    useUpdateProfile,
+} from 'react-firebase-hooks/auth'
 import Button from '../../../../components/common/Button'
 import stylesCommon from '../../../../styles/pages/auth/AuthCommon.module.scss'
 import Link from 'next/link'
 import fetch from 'node-fetch'
+import { useRouter } from 'next/navigation'
 
 function Page(props) {
     initFirebase()
@@ -16,6 +21,13 @@ function Page(props) {
         useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true })
     const [updateProfile, updating, updateError] = useUpdateProfile(auth)
     const [dbAddError, setDbAddError] = useState(false)
+    const [user2, loading2, error2] = useAuthState(auth)
+
+    const router = useRouter()
+
+    useEffect(() => {
+        if (user || user2) router.push('/')
+    }, [user, loading, user2, loading2])
 
     const usernameField = useRef(null)
     const emailField = useRef(null)

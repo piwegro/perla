@@ -1,25 +1,32 @@
 'use client'
 
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { initFirebase } from '../../../../utils/firebase'
 import { getAuth } from 'firebase/auth'
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth'
+import { useAuthState, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import stylesCommon from '../../../../styles/pages/auth/AuthCommon.module.scss'
 import Button from '../../../../components/common/Button'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 function Page(props) {
     initFirebase()
     const auth = getAuth()
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth)
+    const [user2, loading2, error2] = useAuthState(auth)
 
     const emailField = useRef(null)
     const passwordField = useRef(null)
 
+    const router = useRouter()
+
     const handleSubmit = () => {
-        console.log(emailField.current.value, passwordField.current.value)
         signInWithEmailAndPassword(emailField.current.value, passwordField.current.value)
     }
+
+    useEffect(() => {
+        if (user2) router.push('/')
+    }, [user2, loading2, user, loading])
 
     // Firebase error codes
     // auth/user-not-found
