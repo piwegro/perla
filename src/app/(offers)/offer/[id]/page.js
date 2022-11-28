@@ -45,13 +45,13 @@ const Page = async ({ params }) => {
                                 alt='Avatar użytkownika'
                                 className={styles.sellerAvatar}
                             />
-                            <h3>{offerData.seller.name}</h3>
+                            <h3>{offerData.seller?.name}</h3>
                             <Button element={'anchor'} href={'/'}>
                                 Wyślij wiadomość
                             </Button>
 
                             <Link
-                                href={`/user/${offerData.seller.uid}`}
+                                href={`/user/${offerData.seller?.uid}`}
                                 className={styles.otherOffers}>
                                 Inne ogłoszenia od tej osoby
                             </Link>
