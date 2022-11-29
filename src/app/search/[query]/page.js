@@ -35,7 +35,7 @@ const Page = async ({ params }) => {
                     <span>{!searchResults ? searchQuery : null}</span>
                 </div>
             </Hero>
-            {!searchResults.error ? (
+            {!searchResults?.error ? (
                 <div className={styles.wrapper}>
                     <div className={container}>
                         <OfferList offers={searchResults} />

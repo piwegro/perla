@@ -11,7 +11,7 @@ export default function Page() {
             <div className={styles.content}>
                 <div className={container}>
                     <h2>Ostatnie ogłoszenia</h2>
-                    <Suspense fallback={<p>Ładowanie...</p>}>
+                    <Suspense fallback={<p>Ładowanie ogłoszeń...</p>}>
                         <LastOffers />
                     </Suspense>
                 </div>
