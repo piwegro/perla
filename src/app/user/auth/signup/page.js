@@ -13,6 +13,8 @@ import stylesCommon from '../../../../styles/pages/auth/AuthCommon.module.scss'
 import Link from 'next/link'
 import fetch from 'node-fetch'
 import { useRouter } from 'next/navigation'
+import Notification from '../../../../components/auth/Notification'
+import convertFirebaseError from '../../../../utils/firebaseErrorConverter'
 
 function Page(props) {
     initFirebase()
@@ -73,11 +75,6 @@ function Page(props) {
             })
     }
 
-    // Firebase error codes
-    // auth/email-already-exists - Email already exists
-    // auth/invalid-email - email is invalid
-    // auth/weak-password - (min 6 characters)
-
     // TODO: add errors for creating user (error), updating user (updateError), adding to database (dbAddError)
 
     return (
@@ -85,6 +82,21 @@ function Page(props) {
             <div className={stylesCommon.content}>
                 <div className={stylesCommon.authBox}>
                     <h2>Rejestracja</h2>
+                    {error ? (
+                        <Notification type={'error'}>{convertFirebaseError(error)}</Notification>
+                    ) : null}
+                    {updateError ? (
+                        <Notification type={'error'}>
+                            Wystąpił błąd podczas aktualizowania danych użytkownika. Skontaktuj się
+                            z administratorem strony.
+                        </Notification>
+                    ) : null}
+                    {dbAddError ? (
+                        <Notification type={'error'}>
+                            Wystąpił błąd podczas dodawania użytkownika do bazy danych. Skontaktuj
+                            się z administratorem strony.
+                        </Notification>
+                    ) : null}
                     <form onSubmit={handleSubmit}>
                         <div className={stylesCommon.formGroup}>
                             <label htmlFor='username'>Nazwa użytkownika</label>

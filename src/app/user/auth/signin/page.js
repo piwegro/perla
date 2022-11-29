@@ -8,6 +8,8 @@ import stylesCommon from '../../../../styles/pages/auth/AuthCommon.module.scss'
 import Button from '../../../../components/common/Button'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import Notification from '../../../../components/auth/Notification'
+import convertFirebaseError from '../../../../utils/firebaseErrorConverter'
 
 function Page(props) {
     initFirebase()
@@ -28,17 +30,15 @@ function Page(props) {
         if (user2) router.push('/')
     }, [user2, loading2, user, loading])
 
-    // Firebase error codes
-    // auth/user-not-found
-    // auth/wrong-password
-    // auth/invalid-email
-
     return (
         <div className={stylesCommon.wrapper}>
             <div className={stylesCommon.content}>
                 <div className={stylesCommon.authBox}>
                     <h2>Logowanie</h2>
-                    {error ? console.log(error) : null}
+                    {error ? (
+                        <Notification type={'error'}>{convertFirebaseError(error)}</Notification>
+                    ) : null}
+
                     <form
                         onSubmit={e => {
                             e.preventDefault()
