@@ -24,12 +24,15 @@ function Page(props) {
     const [updateProfile, updating, updateError] = useUpdateProfile(auth)
     const [dbAddError, setDbAddError] = useState(false)
     const [user2, loading2, error2] = useAuthState(auth)
+    const [fieldsError, setFieldsError] = useState(false)
 
     const router = useRouter()
 
     useEffect(() => {
+        if (error || error2 || updateError || dbAddError) return
+
         if (user || user2) router.push('/')
-    }, [user, loading, user2, loading2])
+    }, [loading, loading2])
 
     const usernameField = useRef(null)
     const emailField = useRef(null)
@@ -45,13 +48,15 @@ function Page(props) {
         ]
 
         if (!(username && email && password)) {
-            // TODO: add error, empty field
+            setFieldsError(true)
             return
+        } else {
+            setFieldsError(false)
         }
 
         createUserWithEmailAndPassword(emailField.current.value, passwordField.current.value).then(
             userData => {
-                if (!loading && !error)
+                if (userData)
                     updateProfile({ displayName: username }).then(() => {
                         addUserToDatabase(userData.user)
                     })
@@ -97,18 +102,23 @@ function Page(props) {
                             się z administratorem strony.
                         </Notification>
                     ) : null}
+                    {fieldsError ? (
+                        <Notification type={'error'}>
+                            Do założenia konta konieczne jest wypełnienie wszystkich pól.
+                        </Notification>
+                    ) : null}
                     <form onSubmit={handleSubmit}>
                         <div className={stylesCommon.formGroup}>
                             <label htmlFor='username'>Nazwa użytkownika</label>
-                            <input type={'text'} id={'username'} ref={usernameField} />
+                            <input type={'text'} id={'username'} ref={usernameField} required={true} />
                         </div>
                         <div className={stylesCommon.formGroup}>
                             <label htmlFor='email'>Adres e-mail</label>
-                            <input type={'email'} id={'email'} ref={emailField} />
+                            <input type={'email'} id={'email'} ref={emailField} required={true} />
                         </div>
                         <div className={stylesCommon.formGroup}>
                             <label htmlFor='password'>Hasło</label>
-                            <input type={'password'} id={'password'} ref={passwordField} />
+                            <input type={'password'} id={'password'} ref={passwordField} required={true} />
                         </div>
                         <Button element={'button'} type={'submit'}>
                             Zarejestruj się

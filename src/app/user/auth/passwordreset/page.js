@@ -6,6 +6,8 @@ import { getAuth } from 'firebase/auth'
 import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth'
 import stylesCommon from '../../../../styles/pages/auth/AuthCommon.module.scss'
 import Button from '../../../../components/common/Button'
+import Notification from '../../../../components/auth/Notification'
+import convertFirebaseError from '../../../../utils/firebaseErrorConverter'
 
 function Page(props) {
     initFirebase()
@@ -29,6 +31,12 @@ function Page(props) {
             <div className={stylesCommon.content}>
                 <div className={stylesCommon.authBox}>
                     <h2>Resetowanie hasła</h2>
+                    {success ? (
+                        <Notification type={'success'}>Wysłano link do zresetowania hasła.</Notification>
+                    ) : null}
+                    {error ? (
+                        <Notification type={'error'}>{convertFirebaseError(error)}</Notification>
+                    ) : null}
                     <form
                         onSubmit={e => {
                             e.preventDefault()

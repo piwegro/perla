@@ -14,6 +14,7 @@ const OfferList = offers => {
     ]
     return (
         <div className={styles.offerList}>
+            {offers.length < 1 ? <h3>Nie znaleziono ogłoszeń</h3> : null}
             {offers.map(offer => {
                 return <OfferListing data={offer} key={offer.offer_id} />
             })}
