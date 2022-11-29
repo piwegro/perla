@@ -40,4 +40,9 @@
     .searchBox {
         flex-direction: column !important;
     }
+    .searchBox {
+        form {
+            flex-direction: column !important;
+        }
+    }
 }
