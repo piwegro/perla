@@ -2,10 +2,10 @@ import Button from '../common/Button'
 import styles from '../../styles/search/OfferListing.module.scss'
 
 const OfferListing = props => {
-    let { data } = props
+    let { data, type } = props
 
     return (
-        <div className={styles.offerListing} {...props}>
+        <div className={type === 'user' ? styles.userOfferListing : styles.offerListing} {...props}>
             <div className={styles.offerDesc}>
                 <img src={data?.images[0].thumbnail ?? 'https://place-hold.it/96'} alt='' />
                 <div>
@@ -17,7 +17,7 @@ const OfferListing = props => {
                 <div className={styles.price}>
                     {data?.price?.amount ?? '-'} {data?.price?.currency?.symbol}
                 </div>
-                <Button element={'anchor'} href={`/offer/${data?.id ?? 1}`}>
+                <Button element={'anchor'} href={`/offer/${data?.offer_id ?? 1}`}>
                     Zobacz ogłoszenie
                 </Button>
             </div>

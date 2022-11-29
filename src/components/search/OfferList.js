@@ -1,8 +1,8 @@
 import OfferListing from './OfferListing'
 import styles from '../../styles/search/OfferList.module.scss'
 
-const OfferList = offers => {
-    offers = offers?.offers ?? [
+const OfferList = props => {
+    const offers = props?.offers ?? [
         {
             offer_id: '0',
             title: 'Brak ofert',
@@ -16,7 +16,7 @@ const OfferList = offers => {
         <div className={styles.offerList}>
             {offers.length < 1 ? <h3>Nie znaleziono ogłoszeń</h3> : null}
             {offers.map(offer => {
-                return <OfferListing data={offer} key={offer.offer_id} />
+                return <OfferListing data={offer} key={offer.offer_id} type={props.type} />
             })}
         </div>
     )

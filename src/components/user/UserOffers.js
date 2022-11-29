@@ -15,13 +15,13 @@ const getUserOffers = async id => {
     }
 }
 
-const UserOffers = async ({ id }) => {
+const UserOffers = async ({ id, type }) => {
     const userOffers = await getUserOffers(id)
 
     return (
         <>
             <Suspense fallback={<div>Ładowanie ogłoszeń użytkownika...</div>}>
-                <OfferList offers={userOffers} />
+                <OfferList offers={userOffers} type={type} />
             </Suspense>
         </>
     )

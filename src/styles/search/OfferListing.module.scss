@@ -19,6 +19,12 @@
     box-shadow: var(--box-shadow);
 }
 
+.userOfferListing {
+    @extend .offerListing;
+    box-shadow: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .offerDesc {
     display: flex;
     flex-direction: row;
@@ -47,7 +53,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 30%;
+    width: 40%;
 }
 
 .price {

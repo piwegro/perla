@@ -31,7 +31,7 @@ function Page() {
     useEffect(() => {
         if (error || error2 || updateError || dbAddError) return
 
-        if (user || user2) router.push('/')
+        if (!loading && (user || user2)) router.push('/')
     }, [loading, loading2])
 
     const usernameField = useRef(null)
@@ -65,14 +65,24 @@ function Page() {
     }
 
     const addUserToDatabase = user => {
+        console.log('Adding user', user)
+        console.log('API', `${process.env.NEXT_PUBLIC_API_URL}/user/${user.uid}`)
+
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/${user.uid}`, {
             method: 'PUT',
         })
             .then(res => {
-                if (!res.ok) setDbAddError(true)
+                if (!res.ok) {
+                    setDbAddError(true)
+                    console.log('API ERROR', res.statusText)
+                }
                 return res.json()
             })
+            .then(data => {
+                console.log('API RESP', data)
+            })
             .catch(() => {
+                console.log('DB ERROR')
                 setDbAddError(true)
             })
     }

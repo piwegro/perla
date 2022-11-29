@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import Hero from '../../../components/common/Hero'
 import { container } from '../../../styles/common/Grid.module.scss'
 import styles from '../../../styles/pages/Account.module.scss'
@@ -42,7 +43,11 @@ const Page = async ({ params }) => {
                     <div className={styles.wrapper}>
                         <div className={`${styles.mainBox} ${styles.box}`}>
                             <h1>Ogłoszenia użytkownika</h1>
-                            {/*<UserOffers id={params.id} />*/}
+                            <div className={styles.listings}>
+                                <Suspense fallback={<p>Ładowanie ogłoszeń...</p>}>
+                                    <UserOffers id={params.id} type={'user'} />
+                                </Suspense>
+                            </div>
                         </div>
                         <div className={`${styles.sideBox} ${styles.box}`}>
                             <h3>Preferowane waluty</h3>
