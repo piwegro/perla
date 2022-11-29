@@ -9,14 +9,15 @@ const getOffer = async id => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/offer/${id}`)
 
-        // TODO: replace this with some json return
         if (!res.ok) {
             throw new Error(res.statusText)
         }
 
         return res.json()
     } catch (e) {
-        return {}
+        return {
+            error: true,
+        }
     }
 }
 
@@ -31,45 +32,48 @@ const Page = async ({ params }) => {
     return (
         <>
             <Hero center={true}>
-                <h2>{offerData.title}</h2>
+                <h2>{offerData.error ? 'Nie znaleziono głoszenia' : offerData.title}</h2>
             </Hero>
-            <div className={container}>
-                <div className={styles.wrapper}>
-                    <div className={`${styles.box} ${styles.mainBox}`}>
-                        <Carousel offerData={offerData} />
-                    </div>
-                    <div className={`${styles.box} ${styles.userBox}`}>
-                        <div className={styles.sellerDetails}>
-                            <img
-                                src='/user_avatar.png'
-                                alt='Avatar użytkownika'
-                                className={styles.sellerAvatar}
-                            />
-                            <h3>{offerData.seller?.name}</h3>
-                            <Button element={'anchor'} href={'/'}>
-                                Wyślij wiadomość
-                            </Button>
-
-                            <Link
-                                href={`/user/${offerData.seller?.uid}`}
-                                className={styles.otherOffers}>
-                                Inne ogłoszenia od tej osoby
-                            </Link>
+            {!offerData.error ? (
+                <div className={container}>
+                    <div className={styles.wrapper}>
+                        <div className={`${styles.box} ${styles.mainBox}`}>
+                            <Carousel offerData={offerData} />
                         </div>
+                        <div className={`${styles.box} ${styles.userBox}`}>
+                            <div className={styles.sellerDetails}>
+                                <img
+                                    src='/user_avatar.png'
+                                    alt='Avatar użytkownika'
+                                    className={styles.sellerAvatar}
+                                />
+                                <h3>{offerData.seller?.name}</h3>
+                                <Button element={'anchor'} href={'/'}>
+                                    Wyślij wiadomość
+                                </Button>
 
-                        <div className={styles.offerLocation}>
-                            <h4>Lokalizacja ogłoszenia</h4>
-                            <span>
-                                {offerData.location ?? 'Ogłoszeniodawca nie podał lokalizacji'}
-                            </span>
+                                <Link
+                                    href={`/user/${offerData.seller?.uid}`}
+                                    className={styles.otherOffers}>
+                                    Inne ogłoszenia od tej osoby
+                                </Link>
+                            </div>
+
+                            <div className={styles.offerLocation}>
+                                <h4>Lokalizacja ogłoszenia</h4>
+                                <span>
+                                    {offerData.location ?? 'Ogłoszeniodawca nie podał lokalizacji'}
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    <div className={`${styles.box} ${styles.mainBox} ${styles.offerDescription}`}>
-                        <h2>Opis ogłoszenia</h2>
-                        <p>{offerData.description}</p>
+                        <div
+                            className={`${styles.box} ${styles.mainBox} ${styles.offerDescription}`}>
+                            <h2>Opis ogłoszenia</h2>
+                            <p>{offerData.description}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            ) : null}
         </>
     )
 }

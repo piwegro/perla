@@ -16,7 +16,7 @@ import { useRouter } from 'next/navigation'
 import Notification from '../../../../components/auth/Notification'
 import convertFirebaseError from '../../../../utils/firebaseErrorConverter'
 
-function Page(props) {
+function Page() {
     initFirebase()
     const auth = getAuth()
     const [createUserWithEmailAndPassword, user, loading, error] =
@@ -72,15 +72,10 @@ function Page(props) {
                 if (!res.ok) setDbAddError(true)
                 return res.json()
             })
-            .then(res => {
-                console.log(res)
-            })
-            .catch(e => {
+            .catch(() => {
                 setDbAddError(true)
             })
     }
-
-    // TODO: add errors for creating user (error), updating user (updateError), adding to database (dbAddError)
 
     return (
         <div className={stylesCommon.wrapper}>
@@ -110,7 +105,12 @@ function Page(props) {
                     <form onSubmit={handleSubmit}>
                         <div className={stylesCommon.formGroup}>
                             <label htmlFor='username'>Nazwa użytkownika</label>
-                            <input type={'text'} id={'username'} ref={usernameField} required={true} />
+                            <input
+                                type={'text'}
+                                id={'username'}
+                                ref={usernameField}
+                                required={true}
+                            />
                         </div>
                         <div className={stylesCommon.formGroup}>
                             <label htmlFor='email'>Adres e-mail</label>
@@ -118,7 +118,12 @@ function Page(props) {
                         </div>
                         <div className={stylesCommon.formGroup}>
                             <label htmlFor='password'>Hasło</label>
-                            <input type={'password'} id={'password'} ref={passwordField} required={true} />
+                            <input
+                                type={'password'}
+                                id={'password'}
+                                ref={passwordField}
+                                required={true}
+                            />
                         </div>
                         <Button element={'button'} type={'submit'}>
                             Zarejestruj się
