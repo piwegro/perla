@@ -1,17 +1,31 @@
-'use client'
-
 import Hero from '../../../../components/common/Hero'
 import { container } from '../../../../styles/common/Grid.module.scss'
 import styles from '../../../../styles/pages/OfferAdd.module.scss'
-import Button from '../../../../components/common/Button'
-import UploadBox from '../../../../components/offer/ImageUpload'
+import AddForm from '../../../../components/offer/AddForm'
 
-const Page = ({ params }) => {
-    const handleSubmit = e => {
-        e.preventDefault()
-        const data = new FormData(e.target)
-        console.log([...data.entries()])
+const getCurrencies = async () => {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/currencies`)
+
+        if (!res.ok) {
+            throw new Error(res.statusText)
+        }
+
+        return res.json()
+    } catch (e) {
+        return {
+            error: true,
+        }
     }
+}
+
+export const preload = id => {
+    void getCurrencies()
+}
+
+const Page = async () => {
+    const currencies = await getCurrencies()
+
     return (
         <>
             <Hero center={true}>
@@ -19,34 +33,7 @@ const Page = ({ params }) => {
             </Hero>
             <div className={container}>
                 <div className={styles.box}>
-                    <form action='' onSubmit={handleSubmit}>
-                        <div className={styles.formGroup}>
-                            <label htmlFor={'title'}>Tytuł</label>
-                            <input type={'text'} id={'title'} />
-                        </div>
-
-                        <div className={styles.formGroup}>
-                            <label htmlFor={'description'}>Opis ogłoszenia</label>
-                            <textarea id={'description'} />
-                        </div>
-
-                        <div className={styles.formGroup}>
-                            <label>Dodaj zdjęcia</label>
-                            <div className={styles.uploadBoxList}>
-                                {[...Array(4).keys()].map(i => (
-                                    <UploadBox id={i} />
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className={styles.formGroup}>
-                            <label htmlFor='location'>Lokalizacja ogłoszenia</label>
-                            <input type={'text'} id={'location'} />
-                        </div>
-                        <Button type={'submit'} element={'button'}>
-                            Dodaj ogłoszenie
-                        </Button>
-                    </form>
+                    <AddForm currencies={currencies || []} />
                 </div>
             </div>
         </>

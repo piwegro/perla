@@ -27,7 +27,7 @@ function Page(props) {
     }
 
     useEffect(() => {
-        if (user2) router.push('/')
+        if (!loading2 && user2) router.push('/')
     }, [user2, loading2, user, loading])
 
     return (

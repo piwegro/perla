@@ -19,4 +19,10 @@
     &:hover {
         cursor: pointer;
     }
+
+    &:disabled,
+    &[disabled] {
+        background: rgba(76, 104, 246, 0.7);
+        cursor: not-allowed;
+    }
 }

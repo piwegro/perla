@@ -49,6 +49,10 @@
         }
     }
 
+    select {
+        @extend input;
+    }
+
     textarea {
         @extend input;
         height: 250px;
@@ -72,6 +76,7 @@
     height: 112.5px;
     aspect-ratio: 16 / 9;
     background: var(--background);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     padding: 0.5rem;
 

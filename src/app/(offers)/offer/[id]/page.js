@@ -32,9 +32,9 @@ const Page = async ({ params }) => {
     return (
         <>
             <Hero center={true}>
-                <h2>{offerData.error ? 'Nie znaleziono głoszenia' : offerData.title}</h2>
+                <h2>{offerData?.error ? 'Nie znaleziono głoszenia' : offerData.title}</h2>
             </Hero>
-            {!offerData.error ? (
+            {!offerData?.error ? (
                 <div className={container}>
                     <div className={styles.wrapper}>
                         <div className={`${styles.box} ${styles.mainBox}`}>
