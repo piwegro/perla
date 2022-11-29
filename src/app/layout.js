@@ -1,8 +1,9 @@
 import '../styles/globals.scss'
 import Navbar from '../components/common/Navbar'
 import openSans from '../styles/common/Font'
+import Footer from '../components/common/Footer'
 
-export default function RootLayout({ children }) {
+const RootLayout = ({ children }) => {
     return (
         <html lang='pl' className={openSans.className}>
             <head>
@@ -12,7 +13,10 @@ export default function RootLayout({ children }) {
             <body>
                 <Navbar />
                 {children}
+                <Footer />
             </body>
         </html>
     )
 }
+
+export default RootLayout

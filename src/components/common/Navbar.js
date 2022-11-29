@@ -16,16 +16,16 @@ const NAV_ITEMS = [
     },
     {
         label: 'Konto',
-        href: '/account',
+        href: '/user/account',
     },
     {
         label: 'Dodaj ogłoszenie',
-        href: '/offers/add',
+        href: '/offer/add',
         type: 'button',
     },
 ]
 
-export default function Navbar() {
+const Navbar = () => {
     const [expanded, setExpanded] = useState(false)
     return (
         <div className={styles.navbar}>
@@ -98,3 +98,5 @@ const ExpandButton = props => {
         </div>
     )
 }
+
+export default Navbar

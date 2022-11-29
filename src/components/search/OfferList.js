@@ -1,29 +1,12 @@
 import OfferListing from './OfferListing'
 import styles from '../../styles/search/OfferList.module.scss'
 
-function OfferList(props) {
-    const offers = [
-        // TODO: This is only a placeholder. Final version should get items from props
+const OfferList = offers => {
+    offers = offers?.offers ?? [
         {
-            id: '123',
-            name: 'Czajnik elektryczny',
-            description: 'Oddam czajnik',
-            photo: 'https://place-hold.it/96',
-            price: '0',
-            currency: 'beer',
-        },
-        {
-            id: '123',
-            name: 'Czajnik elektryczny',
-            description: 'Oddam czajnik',
-            photo: 'https://place-hold.it/96',
-            price: '0',
-            currency: 'beer',
-        },
-        {
-            id: '123',
-            name: 'Czajnik elektryczny',
-            description: 'Oddam czajnik',
+            offer_id: '0',
+            title: 'Brak ofert',
+            description: '',
             photo: 'https://place-hold.it/96',
             price: '0',
             currency: 'beer',
@@ -31,8 +14,9 @@ function OfferList(props) {
     ]
     return (
         <div className={styles.offerList}>
+            {offers.length < 1 ? <h3>Nie znaleziono ogłoszeń</h3> : null}
             {offers.map(offer => {
-                return <OfferListing data={offer} key={offer.id} />
+                return <OfferListing data={offer} key={offer.offer_id} />
             })}
         </div>
     )

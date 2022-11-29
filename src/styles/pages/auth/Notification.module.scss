@@ -1,0 +1,28 @@
+.notification {
+    width: 100%;
+    border-radius: 4px;
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+    padding: 0 1rem;
+}
+
+.warning {
+    background-color: #ffeecc;
+    color: #be5c01;
+    border: 1px solid #be5c01;
+}
+
+.error {
+    background-color: #ffcccc;
+    color: #e20000;
+    border: 1px solid #e20000;
+}
+
+.success {
+    background-color: #d9ffcc;
+    color: #008c27;
+    border: 1px solid #008c27;
+}
