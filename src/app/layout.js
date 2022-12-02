@@ -1,3 +1,4 @@
+import '@csstools/normalize.css'
 import '../styles/globals.scss'
 import Navbar from '../components/common/Navbar'
 import openSans from '../styles/common/Font'

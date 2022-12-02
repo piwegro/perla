@@ -9,7 +9,7 @@
 .box {
     background: var(--component-bg);
     border-radius: 4px;
-    min-height: 600px;
+    min-height: 400px;
     padding: 2rem;
     box-shadow: var(--box-shadow);
 }
@@ -20,6 +20,16 @@
 
 .sideBox {
     grid-column: span 4;
+}
+
+@media screen and (max-width: 992px) {
+    .mainBox {
+        grid-column: span 12;
+    }
+
+    .sideBox {
+        grid-column: span 12;
+    }
 }
 
 .userBox {
@@ -54,8 +64,8 @@
 
 .otherOffers {
     color: var(--text-900);
-    text-decoration: none;
-    font-size: 0.875rem;
+    text-decoration: underline;
+    font-size: 0.9rem;
 }
 
 .offerLocation {

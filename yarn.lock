@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@csstools/normalize.css@^12.0.0":
+  version "12.0.0"
+  resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-12.0.0.tgz#a9583a75c3f150667771f30b60d9f059473e62c4"
+  integrity sha512-M0qqxAcwCsIVfpFQSlGN5XjXWu8l5JDZN+fPt1LeW5SZexQTgnaEvgXAY+CeygRw0EeppWHi12JxESWiWrB0Sg==
+
 "@firebase/analytics-compat@0.1.17":
   version "0.1.17"
   resolved "https://registry.yarnpkg.com/@firebase/analytics-compat/-/analytics-compat-0.1.17.tgz#7be65327b3fe8a4dceab636562fc10032064280f"
