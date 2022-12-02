@@ -15,6 +15,10 @@ const NAV_ITEMS = [
         href: '/messages',
     },
     {
+        label: 'Ulubione',
+        href: '/favourites',
+    },
+    {
         label: 'Konto',
         href: '/user/account',
     },
