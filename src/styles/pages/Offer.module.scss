@@ -1,7 +1,7 @@
 .wrapper {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    gap: 32px;
+    gap: 2rem;
     width: 100%;
     margin: 5rem 0;
 }
@@ -12,6 +12,15 @@
     min-height: 400px;
     padding: 2rem;
     box-shadow: var(--box-shadow);
+}
+
+@media screen and (max-width: 480px) {
+    .wrapper {
+        gap: 1rem;
+    }
+    .box {
+        padding: 1rem;
+    }
 }
 
 .mainBox {
