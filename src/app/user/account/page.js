@@ -1,11 +1,14 @@
-import { Suspense } from 'react'
+import Hero from '../../../components/common/Hero'
 import { container } from '../../../styles/common/Grid.module.scss'
 import styles from '../../../styles/pages/Account.module.scss'
-import Hero from '../../../components/common/Hero'
+import OwnOffers from '../../../components/user/OwnOffers'
 import LogOutButton from '../../../components/auth/LogOutButton'
-import UserOffers from '../../../components/user/UserOffers'
+import AcceptedCurrencies from '../../../components/user/AcceptedCurrencies'
+import Opinions from '../../../components/user/Opinions'
+import Button from '../../../components/common/Button'
+import ProfileButton from '../../../components/user/ProfileButton'
 
-const Page = ({ params }) => {
+const Page = async () => {
     return (
         <>
             <Hero center={true}>
@@ -15,9 +18,14 @@ const Page = ({ params }) => {
                 <div className={styles.wrapper}>
                     <div className={`${styles.mainBox} ${styles.box}`}>
                         <h1>Twoje ogłoszenia</h1>
-                        <div className={styles.listings}></div>
+                        <div className={styles.listings}>
+                            <OwnOffers />
+                        </div>
                     </div>
                     <div className={`${styles.sideBox} ${styles.box}`}>
+                        <h3>Twoje preferowane waluty</h3>
+                        <h3>Opinie o Tobie</h3>
+                        <ProfileButton />
                         <LogOutButton />
                     </div>
                 </div>

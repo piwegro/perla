@@ -5,13 +5,15 @@ import openSans from '../../styles/common/Font'
 import styles from '../../styles/common/Button.module.scss'
 
 const Button = props => {
-    const { element, href, children } = props
+    const { element, href, children, type } = props
 
     switch (element) {
         case 'anchor':
             return (
                 <Link
-                    className={`${styles.button} ${openSans.className}`}
+                    className={`${styles.button} ${openSans.className} ${
+                        type === 'light' ? styles.light : ''
+                    }`}
                     href={href || '/'}
                     {...props}>
                     {children}
@@ -19,7 +21,11 @@ const Button = props => {
             )
         case 'button':
             return (
-                <button className={`${styles.button} ${openSans.className}`} {...props}>
+                <button
+                    className={`${styles.button} ${openSans.className} ${
+                        type === 'light' ? styles.light : ''
+                    }`}
+                    {...props}>
                     {children}
                 </button>
             )

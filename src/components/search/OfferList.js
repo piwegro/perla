@@ -1,3 +1,4 @@
+'use client'
 import OfferListing from './OfferListing'
 import styles from '../../styles/search/OfferList.module.scss'
 

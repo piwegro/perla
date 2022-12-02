@@ -10,7 +10,10 @@ const OfferListing = props => {
                 <img src={data?.images[0].thumbnail ?? 'https://place-hold.it/96'} alt='' />
                 <div>
                     <b>{data?.title ?? '-'}</b>
-                    <span>{data?.description ?? '-'}</span>
+                    <span>
+                        {data?.description.substring(0, 60) +
+                            (data?.description.length > 60 ? '...' : '') ?? '-'}
+                    </span>
                 </div>
             </div>
             <div className={styles.offerRight}>
