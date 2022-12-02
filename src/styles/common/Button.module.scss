@@ -29,3 +29,16 @@
         cursor: not-allowed;
     }
 }
+
+.light {
+    background: var(--component-bg);
+    color: var(--text-900);
+
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+    &:disabled,
+    &[disabled] {
+        opacity: 0.7;
+        cursor: not-allowed;
+    }
+}
