@@ -10,7 +10,6 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import fetch from 'node-fetch'
 import Notification from '../auth/Notification'
-import convertFirebaseError from '../../utils/firebaseErrorConverter'
 
 const AddForm = ({ currencies }) => {
     initFirebase()
@@ -29,9 +28,7 @@ const AddForm = ({ currencies }) => {
     const [fieldsError, setFieldsError] = useState(false)
 
     useEffect(() => {
-        if (error) return
-
-        if (!loading && !user) router.push('/user/auth/signin')
+        if ((!loading && !user) || error) router.push('/user/auth/signin')
     }, [loading])
 
     const getValueFromRef = ref => ref.current.value
@@ -73,6 +70,7 @@ const AddForm = ({ currencies }) => {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/offer`, {
             method: 'POST',
             headers: {
+                Authorization: `Bearer ${user.accessToken}`,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(postData),
