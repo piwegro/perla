@@ -130,6 +130,8 @@
 
     width: 200px;
 
+    object-fit: cover;
+
     &[data-active='true'] {
         border: 3px solid var(--brand-900);
     }
