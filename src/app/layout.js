@@ -7,10 +7,6 @@ import Footer from '../components/common/Footer'
 const RootLayout = ({ children }) => {
     return (
         <html lang='pl' className={openSans.className}>
-            <head>
-                <title>Piwegro</title>
-                <meta name='viewport' content='width=device-width' />
-            </head>
             <body>
                 <Navbar />
                 {children}

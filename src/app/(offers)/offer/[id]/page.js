@@ -2,7 +2,6 @@ import Hero from '../../../../components/common/Hero'
 import styles from '../../../../styles/pages/Offer.module.scss'
 import { container } from '../../../../styles/common/Grid.module.scss'
 import Button from '../../../../components/common/Button'
-import Link from 'next/link'
 import Carousel from '../../../../components/offer/Carousel'
 
 const getOffer = async id => {
