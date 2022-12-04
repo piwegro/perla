@@ -4,7 +4,7 @@ export default async function Head({ params }) {
     return (
         <>
             <DefaultTags />
-            <title>Piwegro.lol - Wyszukiwanie {decodeURI(params.query)}</title>
+            <title>{`Piwegro.lol - Wyszukiwanie ` + decodeURI(params.query)}</title>
         </>
     )
 }

@@ -47,7 +47,7 @@ const Page = async ({ params }) => {
                                     className={styles.sellerAvatar}
                                 />
                                 <h3>{offerData.seller?.name}</h3>
-                                <Button element={'anchor'} href={'/'}>
+                                <Button element={'anchor'} href={`/messages/${id}`}>
                                     Wyślij wiadomość
                                 </Button>
 

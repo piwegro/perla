@@ -54,7 +54,7 @@ const Page = async ({ params }) => {
 
                             <AcceptedCurrencies currencies={userData.accepted_currencies} />
                             <h3>Opinie o użytkowniku</h3>
-                            <Opinions />
+                            <Opinions id={params.id} />
                         </div>
                     </div>
                 </div>
