@@ -1,4 +1,4 @@
-import DefaultTags from '../../defaultTags'
+import DefaultTags from '../../../../defaultTags'
 
 const getUser = async id => {
     try {
