@@ -2,7 +2,6 @@ import Hero from '../../../../components/common/Hero'
 import styles from '../../../../styles/pages/Offer.module.scss'
 import { container } from '../../../../styles/common/Grid.module.scss'
 import Button from '../../../../components/common/Button'
-import Link from 'next/link'
 import Carousel from '../../../../components/offer/Carousel'
 
 const getOffer = async id => {
@@ -48,27 +47,31 @@ const Page = async ({ params }) => {
                                     className={styles.sellerAvatar}
                                 />
                                 <h3>{offerData.seller?.name}</h3>
-                                <Button element={'anchor'} href={'/'}>
+                                <Button element={'anchor'} href={`/messages/${id}`}>
                                     Wyślij wiadomość
                                 </Button>
 
-                                <Link
+                                <Button
+                                    element={'anchor'}
                                     href={`/user/${offerData.seller?.uid}`}
-                                    className={styles.otherOffers}>
-                                    Inne ogłoszenia od tej osoby
-                                </Link>
+                                    type={'light'}>
+                                    Inne ogłoszenia sprzedawcy
+                                </Button>
                             </div>
 
                             <div className={styles.offerLocation}>
                                 <h4>Lokalizacja ogłoszenia</h4>
                                 <span>
-                                    {offerData.location ?? 'Ogłoszeniodawca nie podał lokalizacji'}
+                                    {offerData?.location ?? 'Ogłoszeniodawca nie podał lokalizacji'}
                                 </span>
                             </div>
                         </div>
                         <div
                             className={`${styles.box} ${styles.mainBox} ${styles.offerDescription}`}>
-                            <h2>Opis ogłoszenia</h2>
+                            <div className={styles.descTitle}>
+                                <h2>Opis ogłoszenia</h2>
+                                <span>{new Date('2022-10-31T18:32:19').toLocaleString()}</span>
+                            </div>
                             <p>{offerData.description}</p>
                         </div>
                     </div>

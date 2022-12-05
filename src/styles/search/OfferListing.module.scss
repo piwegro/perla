@@ -27,6 +27,10 @@
     box-shadow: none;
     border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 1rem;
+
+    .offerDesc {
+        gap: 1rem;
+    }
 }
 
 .offerDesc {
@@ -50,6 +54,7 @@
         border-radius: 4px;
         width: 96px;
         height: 96px;
+        object-fit: contain;
     }
 }
 

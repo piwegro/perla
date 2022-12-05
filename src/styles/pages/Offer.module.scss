@@ -59,6 +59,10 @@
 
     gap: 0.5rem;
 
+    a {
+        width: 100%;
+    }
+
     h3 {
         font-size: 1.5rem;
         font-weight: 600;
@@ -99,12 +103,26 @@
     min-height: auto;
 }
 
+.descTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+    span {
+        color: var(--text-800);
+        text-align: right;
+    }
+}
+
 // Images
 .mainImage {
     aspect-ratio: 16 / 9;
     border-radius: 4px;
     width: 100%;
     background: #d9d9d9;
+
+    object-fit: contain;
 }
 
 .previewImage {
@@ -112,8 +130,14 @@
 
     width: 200px;
 
+    object-fit: cover;
+
     &[data-active='true'] {
         border: 3px solid var(--brand-900);
+    }
+
+    &:hover {
+        cursor: pointer;
     }
 }
 
