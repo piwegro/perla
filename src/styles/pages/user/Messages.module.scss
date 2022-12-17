@@ -1,0 +1,125 @@
+.box {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+
+    width: 100%;
+    min-height: 35rem;
+
+    margin: 5rem 0;
+
+    background: var(--component-bg);
+    border-radius: 4px;
+    box-shadow: var(--box-shadow);
+}
+
+.messagesColumn {
+    grid-column: span 8;
+
+    padding: 2rem 0;
+}
+
+.conversationsColumn {
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+
+    padding: 2.5rem 0 0;
+
+    gap: 2rem;
+
+    grid-column: span 4;
+
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+
+    h3 {
+        font-size: 2rem;
+        font-weight: 400;
+        text-align: center;
+
+        margin: 0 0.5rem;
+    }
+}
+
+.conversations {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    overflow-y: auto;
+}
+
+.conversation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    min-height: 80px;
+    width: 100%;
+
+    gap: 1.5rem;
+
+    padding: 1rem 2rem;
+
+    cursor: pointer;
+
+    background: var(--component-bg);
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        background: var(--background);
+    }
+
+    &:nth-child(1) {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+}
+
+.conversationAvatar {
+    width: 3rem;
+    height: 3rem;
+}
+
+.conversationContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    gap: 0.5rem;
+}
+
+.conversationSender {
+    font-size: 1.25rem;
+}
+
+.conversationDate {
+    display: flex;
+    flex-direction: column;
+
+    color: var(--text-800);
+}
+
+.active {
+    background: var(--background);
+}
+
+.noConversation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+    width: 100%;
+
+    h3 {
+        font-size: 2rem;
+        font-weight: 400;
+        text-align: center;
+
+        margin: 0 0.5rem;
+    }
+}
