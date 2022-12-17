@@ -3,15 +3,13 @@
 import styles from '../../styles/pages/OfferAdd.module.scss'
 import { useState } from 'react'
 
-const UploadBox = ({ id }) => {
+const UploadBox = ({ id, passData }) => {
     const [isImageSelected, setIsImageSelected] = useState(false)
     const [imageURL, setImageURL] = useState('')
     const handleFileRead = e => {
         const content = e.target.result
         setImageURL(content)
-        console.log(content)
-        // TODO: fetch do API
-        // TODO: zmiana z readera na wysyłanie postem?
+        passData(id, content)
     }
 
     const handleFileChosen = e => {
@@ -27,7 +25,7 @@ const UploadBox = ({ id }) => {
     }
 
     return (
-        <label htmlFor={`up-${id}`}>
+        <label htmlFor={`up-${id}`} key={id}>
             <div className={styles.uploadBox}>
                 <input
                     type={'file'}

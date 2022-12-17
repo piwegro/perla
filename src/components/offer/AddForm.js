@@ -22,7 +22,8 @@ const AddForm = ({ currencies }) => {
     const priceField = useRef(null)
     const currencyField = useRef(null)
     const locationField = useRef(null)
-    // TODO: photos
+    const [images, setImages] = useState([])
+    const [imagesURL, setImagesURL] = useState([])
 
     const [addError, setAddError] = useState(false)
     const [fieldsError, setFieldsError] = useState(false)
@@ -46,7 +47,57 @@ const AddForm = ({ currencies }) => {
         ) {
             setFieldsError(true)
         }
+        fixImagesURL()
         addOfferToDB()
+    }
+
+    const passData = (id, data) => {
+        setImages(prev => {
+            prev[id] = data
+            console.log(prev)
+            return prev
+        })
+        uploadImage(id, data)
+    }
+
+    const fixImagesURL = () => {
+        setImagesURL(prev => {
+            prev = prev.filter(image => image)
+            return prev
+        })
+    }
+
+    const uploadImage = (id, image) => {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/images`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${user.accessToken}`,
+                'Content-Type': 'application/json',
+            },
+            body: image,
+        })
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(res.statusText)
+                }
+                return res.text()
+            })
+            .then(data => {
+                if (data?.error) {
+                    throw new Error(data.error)
+                }
+
+                console.log(data)
+                setImagesURL(prev => {
+                    prev[id] = JSON.parse(data)
+                    return prev
+                })
+
+                console.log(imagesURL)
+            })
+            .catch(e => {
+                console.error(e)
+            })
     }
 
     const addOfferToDB = () => {
@@ -57,14 +108,17 @@ const AddForm = ({ currencies }) => {
             title: getValueFromRef(titleField),
             description: getValueFromRef(descriptionField),
             location: getValueFromRef(locationField),
-            images: [
-                {
-                    image_id: 1,
-                    original: 'https://cdn.piwegro.lol/images/13/original.png',
-                    preview: 'https://cdn.piwegro.lol/images/13/preview.png',
-                    thumbnail: 'https://cdn.piwegro.lol/images/13/thumbnail.png',
-                },
-            ],
+            images:
+                imagesURL.length > 0
+                    ? imagesURL
+                    : [
+                        {
+                            image_id: 1,
+                            original: 'https://cdn.piwegro.lol/images/13/original.png',
+                            preview: 'https://cdn.piwegro.lol/images/13/preview.png',
+                            thumbnail: 'https://cdn.piwegro.lol/images/13/thumbnail.png',
+                        },
+                    ],
         }
 
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/offer`, {
@@ -119,9 +173,13 @@ const AddForm = ({ currencies }) => {
             <div className={styles.formGroup}>
                 <label>Dodaj zdjęcia</label>
                 <div className={styles.uploadBoxList}>
-                    {[...Array(4).keys()].map(i => (
-                        <UploadBox id={i} />
-                    ))}
+                    {loading ? (
+                        <span>Ładowanie...</span>
+                    ) : (
+                        [...Array(4).keys()].map(i => (
+                            <UploadBox key={i} id={i} passData={passData} />
+                        ))
+                    )}
                 </div>
             </div>
 
@@ -141,10 +199,10 @@ const AddForm = ({ currencies }) => {
                     {!currencies ? <option value={'none'}>Trwa ładowanie walut...</option> : null}
                     {currencies
                         ? currencies.map(currency => (
-                              <option value={currency.symbol} key={currency.symbol}>
-                                  {currency.name}
-                              </option>
-                          ))
+                            <option value={currency.symbol} key={currency.symbol}>
+                                {currency.name}
+                            </option>
+                        ))
                         : null}
                 </select>
             </div>
