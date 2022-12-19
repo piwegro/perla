@@ -1,5 +1,12 @@
+import Loader from '../../components/common/Loader'
+
 const Page = async ({ params }) => {
-    return <div></div>
+    return (
+        <>
+            <Loader />
+            <div></div>
+        </>
+    )
 }
 
 export default Page

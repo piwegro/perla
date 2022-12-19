@@ -2,6 +2,7 @@ import Hero from '../../../../components/common/Hero'
 import { container } from '../../../../styles/common/Grid.module.scss'
 import styles from '../../../../styles/pages/OfferAdd.module.scss'
 import AddForm from '../../../../components/offer/AddForm'
+import Loader from '../../../../components/common/Loader'
 
 const getCurrencies = async () => {
     try {
@@ -28,6 +29,7 @@ const Page = async () => {
 
     return (
         <>
+            <Loader />
             <Hero center={true}>
                 <h2>Dodaj ogłoszenie</h2>
             </Hero>

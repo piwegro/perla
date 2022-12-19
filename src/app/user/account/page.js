@@ -4,10 +4,12 @@ import styles from '../../../styles/pages/Account.module.scss'
 import OwnOffers from '../../../components/user/OwnOffers'
 import LogOutButton from '../../../components/auth/LogOutButton'
 import ProfileButton from '../../../components/user/ProfileButton'
+import Loader from '../../../components/common/Loader'
 
 const Page = async () => {
     return (
         <>
+            <Loader />
             <Hero center={true}>
                 <h2>Konto</h2>
             </Hero>

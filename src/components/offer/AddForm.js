@@ -28,10 +28,6 @@ const AddForm = ({ currencies }) => {
     const [addError, setAddError] = useState(false)
     const [fieldsError, setFieldsError] = useState(false)
 
-    useEffect(() => {
-        if ((!loading && !user) || error) router.push('/user/auth/signin')
-    }, [loading])
-
     const getValueFromRef = ref => ref.current.value
 
     const handleSubmit = e => {
@@ -112,13 +108,13 @@ const AddForm = ({ currencies }) => {
                 imagesURL.length > 0
                     ? imagesURL
                     : [
-                        {
-                            image_id: 1,
-                            original: 'https://cdn.piwegro.lol/images/13/original.png',
-                            preview: 'https://cdn.piwegro.lol/images/13/preview.png',
-                            thumbnail: 'https://cdn.piwegro.lol/images/13/thumbnail.png',
-                        },
-                    ],
+                          {
+                              image_id: 1,
+                              original: 'https://cdn.piwegro.lol/images/13/original.png',
+                              preview: 'https://cdn.piwegro.lol/images/13/preview.png',
+                              thumbnail: 'https://cdn.piwegro.lol/images/13/thumbnail.png',
+                          },
+                      ],
         }
 
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/offer`, {
@@ -199,10 +195,10 @@ const AddForm = ({ currencies }) => {
                     {!currencies ? <option value={'none'}>Trwa ładowanie walut...</option> : null}
                     {currencies
                         ? currencies.map(currency => (
-                            <option value={currency.symbol} key={currency.symbol}>
-                                {currency.name}
-                            </option>
-                        ))
+                              <option value={currency.symbol} key={currency.symbol}>
+                                  {currency.name}
+                              </option>
+                          ))
                         : null}
                 </select>
             </div>
