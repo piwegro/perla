@@ -3,6 +3,8 @@ import styles from '../../../../styles/pages/Offer.module.scss'
 import { container } from '../../../../styles/common/Grid.module.scss'
 import Button from '../../../../components/common/Button'
 import Carousel from '../../../../components/offer/Carousel'
+import FavouriteButton from '../../../../components/offer/FavouriteButton'
+import UserRating from '../../../../components/user/UserRating'
 
 const getOffer = async id => {
     try {
@@ -46,7 +48,10 @@ const Page = async ({ params }) => {
                                     alt='Avatar użytkownika'
                                     className={styles.sellerAvatar}
                                 />
-                                <h3>{offerData.seller?.name}</h3>
+                                <div>
+                                    <h3>{offerData.seller?.name}</h3>
+                                    <UserRating rating={3.5} />
+                                </div>
                                 <Button element={'anchor'} href={`/messages/${id}`}>
                                     Wyślij wiadomość
                                 </Button>
@@ -55,7 +60,14 @@ const Page = async ({ params }) => {
                                     element={'anchor'}
                                     href={`/user/${offerData.seller?.uid}`}
                                     type={'light'}>
-                                    Inne ogłoszenia sprzedawcy
+                                    Inne ogłoszenia użytkownika
+                                </Button>
+
+                                <Button
+                                    element={'anchor'}
+                                    href={`/user/${offerData.seller?.uid}`}
+                                    type={'light'}>
+                                    Profil użytkownika
                                 </Button>
                             </div>
 
@@ -70,8 +82,12 @@ const Page = async ({ params }) => {
                             className={`${styles.box} ${styles.mainBox} ${styles.offerDescription}`}>
                             <div className={styles.descTitle}>
                                 <h2>Opis ogłoszenia</h2>
-                                <span>{new Date('2022-10-31T18:32:19').toLocaleString()}</span>
+                                <FavouriteButton />
                             </div>
+                            <span className={styles.creationDate}>
+                                Data dodania: {new Date('2022-10-31T18:32:19').toLocaleString()}
+                            </span>
+
                             <p>{offerData.description}</p>
                         </div>
                     </div>
