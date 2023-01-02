@@ -116,7 +116,7 @@ const Page = async ({ params }) => {
     const conversations = await getConversations()
     const messages = await getMessages(params.user_id)
 
-    console.log(messages)
+    // console.log(messages)
 
     return (
         <>
@@ -125,7 +125,8 @@ const Page = async ({ params }) => {
                 <h2>Wiadomości</h2>
             </Hero>
             <div className={container}>
-                <MessagesBox conversations={conversations} />
+                {/*TODO: change selected to something useful*/}
+                <MessagesBox conversations={conversations} selected={'1'} />
             </div>
         </>
     )
