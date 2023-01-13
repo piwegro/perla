@@ -12,7 +12,6 @@ const Page = async ({ params }) => {
                 <h2>Wiadomości</h2>
             </Hero>
             <div className={container}>
-                {/*TODO: zmień to selected*/}
                 <MessagesBox selected={user_id} />
             </div>
         </>

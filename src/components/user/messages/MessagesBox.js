@@ -17,12 +17,13 @@ const MessagesBox = ({ selected }) => {
     const [user, loading, error] = useAuthState(auth)
     const [conversations, setConversations] = useState([])
     const [conversationsLoaded, setConversationsLoaded] = useState(false)
+    const [refresh, setRefresh] = useState(false)
 
     // Fetch user's conversations
     useEffect(() => {
         if (user) {
             console.log(user.accessToken)
-            fetch(`${process.env.NEXT_PUBLIC_API_URL}/messages`, {
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/messages/users`, {
                 headers: {
                     Authorization: `Bearer ${user.accessToken}`,
                 },
@@ -43,6 +44,10 @@ const MessagesBox = ({ selected }) => {
         }
     }, [user])
 
+    const refreshCallback = () => {
+        setRefresh(p => !p)
+    }
+
     return (
         <div className={styles.box}>
             <div className={styles.conversationsColumn}>
@@ -53,10 +58,14 @@ const MessagesBox = ({ selected }) => {
                 user ? (
                     <div className={styles.messagesColumn}>
                         <div className={styles.messagesScrollBox}>
-                            <Messages user={user} selected={selected} />
+                            <Messages user={user} selected={selected} refresh={refresh} />
                         </div>
                         <div>
-                            <MessageInput user={user} selected={selected} />
+                            <MessageInput
+                                user={user}
+                                receiver={selected}
+                                refresh={refreshCallback}
+                            />
                         </div>
                     </div>
                 ) : null
