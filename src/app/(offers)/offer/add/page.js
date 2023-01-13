@@ -4,6 +4,7 @@ import styles from '../../../../styles/pages/OfferAdd.module.scss'
 import AddForm from '../../../../components/offer/AddForm'
 import Loader from '../../../../components/common/Loader'
 
+/** Gets list of all supported currencies */
 const getCurrencies = async () => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/currencies`)
@@ -20,12 +21,13 @@ const getCurrencies = async () => {
     }
 }
 
+/** Preloads currencies to make the load time faster. */
 export const preload = id => {
     void getCurrencies()
 }
 
 const Page = async () => {
-    const currencies = await getCurrencies()
+    const currencies = await getCurrencies() // Get supported currencies
 
     return (
         <>

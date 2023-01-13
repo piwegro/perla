@@ -4,6 +4,7 @@ import Navbar from '../components/common/Navbar'
 import openSans from '../styles/common/Font'
 import Footer from '../components/common/Footer'
 
+// Default layout for all pages
 const RootLayout = ({ children }) => {
     return (
         <html lang='pl' className={openSans.className}>

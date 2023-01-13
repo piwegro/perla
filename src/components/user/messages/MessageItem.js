@@ -1,5 +1,6 @@
 import styles from '../../../styles/pages/user/Messages.module.scss'
 
+/** Single message sent/received from/by the user */
 const MessageItem = props => {
     return props?.type === 'sender' ? (
         <div className={`${styles.message} ${styles.messageSent}`}>

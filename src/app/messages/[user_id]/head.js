@@ -1,11 +1,10 @@
 import DefaultTags from '../../defaultTags'
 
-export default async function Head({ props }) {
+export default async function Head() {
     return (
         <>
             <DefaultTags />
-            {/* TODO: add fetch here */}
-            <title>Piwegro.lol - Wiadomości z </title>
+            <title>Piwegro.lol - Wiadomości</title>
         </>
     )
 }

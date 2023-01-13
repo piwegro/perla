@@ -3,20 +3,24 @@
 import styles from '../../styles/pages/OfferAdd.module.scss'
 import { useState } from 'react'
 
+/** Component for uploading user's photos */
 const UploadBox = ({ id, passData }) => {
-    const [isImageSelected, setIsImageSelected] = useState(false)
     const [imageURL, setImageURL] = useState('')
+
+    // Handles file read
     const handleFileRead = e => {
         const content = e.target.result
         setImageURL(content)
-        passData(id, content)
+        passData(id, content) // passes data to the form
     }
 
+    /** Handles event when user picks image */
     const handleFileChosen = e => {
         const fileReader = new window.FileReader()
 
         const file = e.target.files[0]
         try {
+            // Reads file and invokes handleFileRead when done
             fileReader.onloadend = handleFileRead
             fileReader.readAsDataURL(file)
         } catch (e) {

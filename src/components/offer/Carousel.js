@@ -4,11 +4,13 @@ import styles from '../../styles/pages/Offer.module.scss'
 import { ChevronLeft, ChevronRight } from 'tabler-icons-react'
 import { useState } from 'react'
 
+/** Carousel component for offer page */
 const Carousel = props => {
-    const { offerData } = props
+    const { offerData } = props // Get offer data from props
 
     const [currentImage, setCurrentImage] = useState(0)
 
+    /** Sets carousel image to the next one */
     const nextImage = () => {
         const imageCount = offerData.images.length
 
@@ -18,6 +20,7 @@ const Carousel = props => {
         }
     }
 
+    /** Sets carousel image to the previous one */
     const previousImage = () => {
         const imageCount = offerData.images.length
 
@@ -27,6 +30,7 @@ const Carousel = props => {
         }
     }
 
+    /** Set carousel image to the one chosen by user */
     const choseImage = id => {
         setCurrentImage(id)
     }

@@ -1,8 +1,9 @@
 import Button from '../common/Button'
 import styles from '../../styles/search/OfferListing.module.scss'
 
+/** Offer listing component */
 const OfferListing = props => {
-    let { data, type } = props
+    let { data, type } = props // unpack props
 
     return (
         <div className={type === 'user' ? styles.userOfferListing : styles.offerListing} {...props}>

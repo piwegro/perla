@@ -6,15 +6,18 @@ import Button from '../common/Button'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { initFirebase } from '../../utils/firebase'
 import { getAuth } from 'firebase/auth'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import fetch from 'node-fetch'
 import Notification from '../auth/Notification'
 
+/** Form component for creating new offers */
 const AddForm = ({ currencies }) => {
+    // Initialize Firebase
     initFirebase()
     const auth = getAuth()
-    const [user, loading, error] = useAuthState(auth)
+    // Get the user
+    const [user, loading] = useAuthState(auth)
     const router = useRouter()
 
     const titleField = useRef(null)
@@ -28,8 +31,12 @@ const AddForm = ({ currencies }) => {
     const [addError, setAddError] = useState(false)
     const [fieldsError, setFieldsError] = useState(false)
 
+    // Wrapper for ref.current.value
     const getValueFromRef = ref => ref.current.value
 
+    // TODO: chyba zrobione, ale trzeba sprawdzić
+
+    // Handles submit of the form and invokes fixImagesURL and addOfferToDB functions
     const handleSubmit = e => {
         e.preventDefault()
         if (
@@ -47,6 +54,7 @@ const AddForm = ({ currencies }) => {
         addOfferToDB()
     }
 
+    // Callback from image upload component
     const passData = (id, data) => {
         setImages(prev => {
             prev[id] = data
@@ -56,6 +64,7 @@ const AddForm = ({ currencies }) => {
         uploadImage(id, data)
     }
 
+    // Removes empty strings from list of images
     const fixImagesURL = () => {
         setImagesURL(prev => {
             prev = prev.filter(image => image)
@@ -63,6 +72,7 @@ const AddForm = ({ currencies }) => {
         })
     }
 
+    // Uploads image to API
     const uploadImage = (id, image) => {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/images`, {
             method: 'POST',
@@ -96,6 +106,7 @@ const AddForm = ({ currencies }) => {
             })
     }
 
+    // Adds offer to database
     const addOfferToDB = () => {
         const postData = {
             seller_id: user.uid,

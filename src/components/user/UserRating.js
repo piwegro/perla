@@ -1,6 +1,7 @@
 import { Star } from 'tabler-icons-react'
 import { userRating, starFull, starHalf, gradient } from '../../styles/pages/Offer.module.scss'
 
+// TODO: dokończyć/sprawdzić czy działa
 const UserRating = ({ rating }) => {
     const fullStars = Math.floor(rating)
     const halfStar = Math.ceil(rating % 1)

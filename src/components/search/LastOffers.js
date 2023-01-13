@@ -1,5 +1,6 @@
 import OfferList from './OfferList'
 
+/** Fetches last offer from API */
 const getLastOffers = async () => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/offers/0`)
@@ -14,9 +15,9 @@ const getLastOffers = async () => {
     }
 }
 
+/** Component containing last offers */
 const LastOffers = async () => {
-    const lastOffers = await getLastOffers()
-    // const lastOffers = []
+    const lastOffers = await getLastOffers() // get last offers
 
     return (
         <>

@@ -1,6 +1,7 @@
 import Button from '../common/Button'
 import styles from '../../styles/pages/user/OpinionsBox.module.scss'
 
+/** User opinions */
 const Opinions = ({ id }) => {
     return (
         <div className={styles.opinions}>

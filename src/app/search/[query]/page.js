@@ -3,6 +3,7 @@ import Hero from '../../../components/common/Hero'
 import { container } from '../../../styles/common/Grid.module.scss'
 import styles from '../../../styles/pages/Search.module.scss'
 
+/** Get search results from API */
 const getSearchResults = async query => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/offers/search/${query}/0`)
@@ -19,13 +20,14 @@ const getSearchResults = async query => {
     }
 }
 
+/** Preload search results to make the load time shorter */
 export const preload = id => {
     void getSearchResults(id)
 }
 
 const Page = async ({ params }) => {
-    const searchResults = await getSearchResults(params.query)
-    const searchQuery = decodeURI(params.query)
+    const searchResults = await getSearchResults(params.query) // Get search results
+    const searchQuery = decodeURI(params.query) // Get search query
 
     return (
         <>

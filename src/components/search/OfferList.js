@@ -2,7 +2,9 @@
 import OfferListing from './OfferListing'
 import styles from '../../styles/search/OfferList.module.scss'
 
+/** Component displaying list of offers from provided list */
 const OfferList = props => {
+    // Add placeholder if there is no offers
     const offers = props?.offers ?? [
         {
             offer_id: '0',

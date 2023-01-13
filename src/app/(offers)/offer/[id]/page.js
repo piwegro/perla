@@ -6,6 +6,7 @@ import Carousel from '../../../../components/offer/Carousel'
 import FavouriteButton from '../../../../components/offer/FavouriteButton'
 import UserRating from '../../../../components/user/UserRating'
 
+/** Gets the details of the offer with specified ID */
 const getOffer = async id => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/offer/${id}`)
@@ -22,13 +23,14 @@ const getOffer = async id => {
     }
 }
 
+/** Preloads offer data to make the load time faster. */
 export const preload = id => {
     void getOffer(id)
 }
 
 const Page = async ({ params }) => {
-    const { id } = params
-    const offerData = await getOffer(id)
+    const { id } = params // Get offer ID
+    const offerData = await getOffer(id) // Get offer data
 
     return (
         <>
@@ -98,4 +100,4 @@ const Page = async ({ params }) => {
 }
 
 export default Page
-export const revalidate = 60
+export const revalidate = 60 // Cache revalidation time

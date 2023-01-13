@@ -12,6 +12,7 @@ const Page = async ({ params }) => {
             </Hero>
             <div className={container}>
                 <div className={styles.content}>
+                    {/*TODO: ulubione ogłoszenia*/}
                     <h2>Lista ogłoszeń</h2>
                 </div>
             </div>

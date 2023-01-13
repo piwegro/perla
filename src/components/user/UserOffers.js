@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import OfferList from '../search/OfferList'
 
+/** Fetches offers of specified user from the API */
 const getUserOffers = async id => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/${id}/offers`)
@@ -15,8 +16,9 @@ const getUserOffers = async id => {
     }
 }
 
+/** List of user's offers */
 const UserOffers = async ({ id, type }) => {
-    const userOffers = await getUserOffers(id)
+    const userOffers = await getUserOffers(id) // Fetch user's offers from API
 
     return (
         <>
