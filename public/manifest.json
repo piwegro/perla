@@ -1,0 +1,12 @@
+{
+    "name": "Piwegro.lol",
+    "short_name": "Piwegro",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#4c68f6",
+    "theme_color": "#4c68f6",
+    "icons": [
+        { "src": "/logo/logo-192.png", "type": "image/png", "sizes": "192x192" },
+        { "src": "/logo/logo-512.png", "type": "image/png", "sizes": "512x512" }
+    ]
+}

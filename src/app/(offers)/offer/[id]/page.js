@@ -3,7 +3,9 @@ import styles from '../../../../styles/pages/Offer.module.scss'
 import { container } from '../../../../styles/common/Grid.module.scss'
 import Button from '../../../../components/common/Button'
 import Carousel from '../../../../components/offer/Carousel'
+import FavouriteButton from '../../../../components/offer/FavouriteButton'
 
+/** Gets the details of the offer with specified ID */
 const getOffer = async id => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/offer/${id}`)
@@ -20,13 +22,14 @@ const getOffer = async id => {
     }
 }
 
+/** Preloads offer data to make the load time faster. */
 export const preload = id => {
     void getOffer(id)
 }
 
 const Page = async ({ params }) => {
-    const { id } = params
-    const offerData = await getOffer(id)
+    const { id } = params // Get offer ID
+    const offerData = await getOffer(id) // Get offer data
 
     return (
         <>
@@ -46,16 +49,32 @@ const Page = async ({ params }) => {
                                     alt='Avatar użytkownika'
                                     className={styles.sellerAvatar}
                                 />
-                                <h3>{offerData.seller?.name}</h3>
+                                <div>
+                                    <h3>{offerData.seller?.name}</h3>
+                                </div>
                                 <Button element={'anchor'} href={`/messages/${id}`}>
                                     Wyślij wiadomość
                                 </Button>
 
                                 <Button
                                     element={'anchor'}
+                                    href={`/user/${offerData.seller?.uid}/reviews`}
+                                    type={'light'}>
+                                    Opinie o użytkowniku
+                                </Button>
+
+                                <Button
+                                    element={'anchor'}
                                     href={`/user/${offerData.seller?.uid}`}
                                     type={'light'}>
-                                    Inne ogłoszenia sprzedawcy
+                                    Inne ogłoszenia użytkownika
+                                </Button>
+
+                                <Button
+                                    element={'anchor'}
+                                    href={`/user/${offerData.seller?.uid}`}
+                                    type={'light'}>
+                                    Profil użytkownika
                                 </Button>
                             </div>
 
@@ -70,8 +89,12 @@ const Page = async ({ params }) => {
                             className={`${styles.box} ${styles.mainBox} ${styles.offerDescription}`}>
                             <div className={styles.descTitle}>
                                 <h2>Opis ogłoszenia</h2>
-                                <span>{new Date('2022-10-31T18:32:19').toLocaleString()}</span>
+                                <FavouriteButton offerID={id} />
                             </div>
+                            <span className={styles.creationDate}>
+                                Data dodania: {new Date('2022-10-31T18:32:19').toLocaleString()}
+                            </span>
+
                             <p>{offerData.description}</p>
                         </div>
                     </div>
@@ -82,4 +105,4 @@ const Page = async ({ params }) => {
 }
 
 export default Page
-export const revalidate = 60
+export const revalidate = 60 // Cache revalidation time

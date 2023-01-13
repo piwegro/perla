@@ -1,5 +1,6 @@
 import styles from '../../styles/pages/user/AcceptedCurrencies.module.scss'
 
+/** List of accepted currencies */
 const AcceptedCurrencies = ({ currencies }) => {
     return (
         <div className={styles.listOfCurrencies}>

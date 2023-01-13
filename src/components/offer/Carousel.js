@@ -4,11 +4,13 @@ import styles from '../../styles/pages/Offer.module.scss'
 import { ChevronLeft, ChevronRight } from 'tabler-icons-react'
 import { useState } from 'react'
 
+/** Carousel component for offer page */
 const Carousel = props => {
-    const { offerData } = props
+    const { offerData } = props // Get offer data from props
 
     const [currentImage, setCurrentImage] = useState(0)
 
+    /** Sets carousel image to the next one */
     const nextImage = () => {
         const imageCount = offerData.images.length
 
@@ -18,8 +20,11 @@ const Carousel = props => {
         }
     }
 
+    /** Sets carousel image to the previous one */
     const previousImage = () => {
         const imageCount = offerData.images.length
+
+        console.log(currentImage)
 
         if (currentImage - 1 < 0) setCurrentImage(imageCount - 1)
         else {
@@ -27,6 +32,7 @@ const Carousel = props => {
         }
     }
 
+    /** Set carousel image to the one chosen by user */
     const choseImage = id => {
         setCurrentImage(id)
     }
@@ -44,7 +50,7 @@ const Carousel = props => {
                 </div>
                 <img
                     src={`${
-                        offerData?.images[currentImage].original ??
+                        offerData?.images[currentImage]?.original ??
                         'https://via.placeholder.com/1920x1080'
                     }`}
                     alt={`Zdjęcie ${currentImage}`}
@@ -52,16 +58,16 @@ const Carousel = props => {
                 />
             </div>
             <div className={styles.previews}>
-                {offerData.images.map(image => {
+                {offerData.images.map((image, i) => {
                     return (
                         <img
-                            src={`${image.preview ?? 'https://via.placeholder.com/1920x1080'}`}
+                            src={`${image?.preview ?? 'https://via.placeholder.com/1920x1080'}`}
                             alt={'Miniaturka'}
                             className={styles.previewImage}
                             key={image.image_id}
-                            data-active={currentImage === image.image_id}
+                            data-active={currentImage === i}
                             onClick={() => {
-                                choseImage(image.image_id)
+                                choseImage(i)
                             }}
                         />
                     )

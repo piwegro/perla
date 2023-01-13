@@ -6,15 +6,18 @@ import Button from '../common/Button'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { initFirebase } from '../../utils/firebase'
 import { getAuth } from 'firebase/auth'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import fetch from 'node-fetch'
 import Notification from '../auth/Notification'
 
+/** Form component for creating new offers */
 const AddForm = ({ currencies }) => {
+    // Initialize Firebase
     initFirebase()
     const auth = getAuth()
-    const [user, loading, error] = useAuthState(auth)
+    // Get the user
+    const [user, loading] = useAuthState(auth)
     const router = useRouter()
 
     const titleField = useRef(null)
@@ -22,19 +25,21 @@ const AddForm = ({ currencies }) => {
     const priceField = useRef(null)
     const currencyField = useRef(null)
     const locationField = useRef(null)
-    // TODO: photos
+    const [images, setImages] = useState([])
+    const [imagesURL, setImagesURL] = useState([])
 
     const [addError, setAddError] = useState(false)
     const [fieldsError, setFieldsError] = useState(false)
 
-    useEffect(() => {
-        if ((!loading && !user) || error) router.push('/user/auth/signin')
-    }, [loading])
-
+    // Wrapper for ref.current.value
     const getValueFromRef = ref => ref.current.value
 
+    // TODO: chyba zrobione, ale trzeba sprawdzić
+
+    // Handles submit of the form and invokes fixImagesURL and addOfferToDB functions
     const handleSubmit = e => {
         e.preventDefault()
+        // Check if all fields are filled
         if (
             !(
                 getValueFromRef(titleField) &&
@@ -46,9 +51,65 @@ const AddForm = ({ currencies }) => {
         ) {
             setFieldsError(true)
         }
+        // Remove empty strings from url list
+        fixImagesURL()
+        // Send offer data to the API
         addOfferToDB()
     }
 
+    // Callback from image upload component
+    const passData = (id, data) => {
+        setImages(prev => {
+            prev[id] = data
+            console.log(prev)
+            return prev
+        })
+        uploadImage(id, data)
+    }
+
+    // Removes empty strings from list of images
+    const fixImagesURL = () => {
+        setImagesURL(prev => {
+            prev = prev.filter(image => image)
+            return prev
+        })
+    }
+
+    // Uploads image to API
+    const uploadImage = (id, image) => {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/images`, {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${user.accessToken}`,
+                'Content-Type': 'application/json',
+            },
+            body: image,
+        })
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(res.statusText)
+                }
+                return res.text()
+            })
+            .then(data => {
+                if (data?.error) {
+                    throw new Error(data.error)
+                }
+
+                console.log(data)
+                setImagesURL(prev => {
+                    prev[id] = JSON.parse(data)
+                    return prev
+                })
+
+                console.log(imagesURL)
+            })
+            .catch(e => {
+                console.error(e)
+            })
+    }
+
+    // Adds offer to database
     const addOfferToDB = () => {
         const postData = {
             seller_id: user.uid,
@@ -57,14 +118,17 @@ const AddForm = ({ currencies }) => {
             title: getValueFromRef(titleField),
             description: getValueFromRef(descriptionField),
             location: getValueFromRef(locationField),
-            images: [
-                {
-                    image_id: 1,
-                    original: 'https://cdn.piwegro.lol/images/13/original.png',
-                    preview: 'https://cdn.piwegro.lol/images/13/preview.png',
-                    thumbnail: 'https://cdn.piwegro.lol/images/13/thumbnail.png',
-                },
-            ],
+            images:
+                imagesURL.length > 0
+                    ? imagesURL
+                    : [
+                          {
+                              image_id: 1,
+                              original: 'https://cdn.piwegro.lol/images/13/original.png',
+                              preview: 'https://cdn.piwegro.lol/images/13/preview.png',
+                              thumbnail: 'https://cdn.piwegro.lol/images/13/thumbnail.png',
+                          },
+                      ],
         }
 
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/offer`, {
@@ -119,9 +183,13 @@ const AddForm = ({ currencies }) => {
             <div className={styles.formGroup}>
                 <label>Dodaj zdjęcia</label>
                 <div className={styles.uploadBoxList}>
-                    {[...Array(4).keys()].map(i => (
-                        <UploadBox id={i} />
-                    ))}
+                    {loading ? (
+                        <span>Ładowanie...</span>
+                    ) : (
+                        [...Array(4).keys()].map(i => (
+                            <UploadBox key={i} id={i} passData={passData} />
+                        ))
+                    )}
                 </div>
             </div>
 

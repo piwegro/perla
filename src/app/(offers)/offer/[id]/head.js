@@ -1,5 +1,6 @@
 import DefaultTags from '../../../defaultTags'
 
+/** Gets the details of the offer with specified ID */
 const getOffer = async id => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/offer/${id}`)
