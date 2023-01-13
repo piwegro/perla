@@ -13,7 +13,7 @@ const FavouriteButton = ({ offerID }) => {
     initFirebase()
     const auth = getAuth()
     // Get the user
-    const [user, loading] = useAuthState(auth)
+    const [user] = useAuthState(auth)
     const [isFavourite, setIsFavourite] = useState(false)
 
     useEffect(() => {
@@ -32,7 +32,9 @@ const FavouriteButton = ({ offerID }) => {
                 })
                 .then(data => {
                     for (let offer of data) {
-                        if (offer.offer_id === offerID) {
+                        console.log(offer.offer_id, offerID)
+                        console.log(offer)
+                        if (offer.offer_id == offerID) {
                             setIsFavourite(true)
                             return
                         }
