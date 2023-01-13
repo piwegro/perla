@@ -4,7 +4,6 @@ import { container } from '../../../../styles/common/Grid.module.scss'
 import Button from '../../../../components/common/Button'
 import Carousel from '../../../../components/offer/Carousel'
 import FavouriteButton from '../../../../components/offer/FavouriteButton'
-import UserRating from '../../../../components/user/UserRating'
 
 /** Gets the details of the offer with specified ID */
 const getOffer = async id => {
@@ -52,10 +51,16 @@ const Page = async ({ params }) => {
                                 />
                                 <div>
                                     <h3>{offerData.seller?.name}</h3>
-                                    <UserRating rating={3.5} />
                                 </div>
                                 <Button element={'anchor'} href={`/messages/${id}`}>
                                     Wyślij wiadomość
+                                </Button>
+
+                                <Button
+                                    element={'anchor'}
+                                    href={`/user/${offerData.seller?.uid}/reviews`}
+                                    type={'light'}>
+                                    Opinie o użytkowniku
                                 </Button>
 
                                 <Button
@@ -84,7 +89,7 @@ const Page = async ({ params }) => {
                             className={`${styles.box} ${styles.mainBox} ${styles.offerDescription}`}>
                             <div className={styles.descTitle}>
                                 <h2>Opis ogłoszenia</h2>
-                                <FavouriteButton />
+                                <FavouriteButton offerID={id} />
                             </div>
                             <span className={styles.creationDate}>
                                 Data dodania: {new Date('2022-10-31T18:32:19').toLocaleString()}

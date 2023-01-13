@@ -21,8 +21,12 @@ const MessagesBox = ({ selected }) => {
     // Fetch user's conversations
     useEffect(() => {
         if (user) {
-            console.log(`${process.env.NEXT_PUBLIC_API_URL}/messages/${user.uid}`)
-            fetch(`${process.env.NEXT_PUBLIC_API_URL}/messages/${user.uid}`)
+            console.log(user.accessToken)
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}/messages`, {
+                headers: {
+                    Authorization: `Bearer ${user.accessToken}`,
+                },
+            })
                 .then(res => {
                     if (!res.ok) {
                         console.log('API ERROR', res.statusText)
@@ -33,6 +37,9 @@ const MessagesBox = ({ selected }) => {
                     setConversations(data)
                     setConversationsLoaded(true)
                 })
+                .catch(e => {
+                    console.error('aaa', e)
+                })
         }
     }, [user])
 
@@ -40,17 +47,19 @@ const MessagesBox = ({ selected }) => {
         <div className={styles.box}>
             <div className={styles.conversationsColumn}>
                 <h3>Ostatnie rozmowy</h3>
-                <ConversationsList conversations={conversations} />
+                <ConversationsList conversations={conversations} selected={selected} />
             </div>
             {selected ? (
-                <div className={styles.messagesColumn}>
-                    <div className={styles.messagesScrollBox}>
-                        <Messages />
+                user ? (
+                    <div className={styles.messagesColumn}>
+                        <div className={styles.messagesScrollBox}>
+                            <Messages user={user} selected={selected} />
+                        </div>
+                        <div>
+                            <MessageInput user={user} selected={selected} />
+                        </div>
                     </div>
-                    <div>
-                        <MessageInput />
-                    </div>
-                </div>
+                ) : null
             ) : (
                 <div className={`${styles.messagesColumn} ${styles.noConversation}`}>
                     <h3>Wybierz konwersację, aby zobaczyć rozmowę.</h3>

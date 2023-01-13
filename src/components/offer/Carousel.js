@@ -24,6 +24,8 @@ const Carousel = props => {
     const previousImage = () => {
         const imageCount = offerData.images.length
 
+        console.log(currentImage)
+
         if (currentImage - 1 < 0) setCurrentImage(imageCount - 1)
         else {
             setCurrentImage(v => v - 1)
@@ -48,7 +50,7 @@ const Carousel = props => {
                 </div>
                 <img
                     src={`${
-                        offerData?.images[currentImage].original ??
+                        offerData?.images[currentImage]?.original ??
                         'https://via.placeholder.com/1920x1080'
                     }`}
                     alt={`Zdjęcie ${currentImage}`}
@@ -56,16 +58,16 @@ const Carousel = props => {
                 />
             </div>
             <div className={styles.previews}>
-                {offerData.images.map(image => {
+                {offerData.images.map((image, i) => {
                     return (
                         <img
-                            src={`${image.preview ?? 'https://via.placeholder.com/1920x1080'}`}
+                            src={`${image?.preview ?? 'https://via.placeholder.com/1920x1080'}`}
                             alt={'Miniaturka'}
                             className={styles.previewImage}
                             key={image.image_id}
-                            data-active={currentImage === image.image_id}
+                            data-active={currentImage === i}
                             onClick={() => {
-                                choseImage(image.image_id)
+                                choseImage(i)
                             }}
                         />
                     )

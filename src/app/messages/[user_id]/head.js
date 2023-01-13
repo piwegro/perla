@@ -1,6 +1,6 @@
 import DefaultTags from '../../defaultTags'
 
-export default async function Head() {
+export default function Head() {
     return (
         <>
             <DefaultTags />

@@ -23,7 +23,6 @@ const Page = async () => {
                     </div>
                     <div className={`${styles.sideBox} ${styles.box}`}>
                         <h3>Twoje preferowane waluty</h3>
-                        <h3>Opinie o Tobie</h3>
                         <ProfileButton />
                         <LogOutButton />
                     </div>

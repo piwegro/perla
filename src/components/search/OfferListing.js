@@ -8,7 +8,7 @@ const OfferListing = props => {
     return (
         <div className={type === 'user' ? styles.userOfferListing : styles.offerListing} {...props}>
             <div className={styles.offerDesc}>
-                <img src={data?.images[0].thumbnail ?? 'https://place-hold.it/96'} alt='' />
+                <img src={data?.images[0]?.thumbnail ?? 'https://place-hold.it/96'} alt='' />
                 <div>
                     <b>{data?.title ?? '-'}</b>
                     <span>
@@ -19,7 +19,7 @@ const OfferListing = props => {
             </div>
             <div className={styles.offerRight}>
                 <div className={styles.price}>
-                    {data?.price?.amount ?? '-'} {data?.price?.currency?.symbol}
+                    {data?.price[0]?.amount ?? '-'} {data?.price[0]?.currency?.symbol}
                 </div>
                 <Button element={'anchor'} href={`/offer/${data?.offer_id ?? 1}`}>
                     Zobacz ogłoszenie

@@ -4,22 +4,24 @@ import styles from '../../../styles/pages/user/Messages.module.scss'
 import Link from 'next/link'
 
 /** Conversation item visible on the user's conversations list */
-const ConversationItem = ({ conversation }) => {
+const ConversationItem = ({ conversation, selected }) => {
     const received_date = new Date(conversation.sent_at) // Convert string to JS date object
     return (
-        <Link href={`/messages/${conversation.sender.uid}`}>
-            <div className={styles.conversation}>
+        <Link href={`/messages/${conversation.sender_id}`}>
+            {/*TODO: dodaj active jak będzie endpoint*/}
+            <div className={`${styles.conversation}`}>
                 <img
                     src='/user_avatar.png'
                     alt='User avatar'
                     className={styles.conversationAvatar}
                 />
                 <div className={styles.conversationContent}>
-                    <span className={styles.conversationSender}>{conversation.sender.name}</span>
-                    <span className={styles.conversationContent}>
-                        {conversation.content.slice(0, 20)}
-                        {conversation.content.length > 20 ? '...' : ''}
-                    </span>
+                    a
+                    {/*<span className={styles.conversationSender}>{conversation.sender.name}</span>*/}
+                    {/*<span className={styles.conversationContent}>*/}
+                    {/*    {conversation.content.slice(0, 20)}*/}
+                    {/*    {conversation.content.length > 20 ? '...' : ''}*/}
+                    {/*</span>*/}
                 </div>
                 <div className={styles.conversationDate}>
                     <span>
