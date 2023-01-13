@@ -39,6 +39,7 @@ const AddForm = ({ currencies }) => {
     // Handles submit of the form and invokes fixImagesURL and addOfferToDB functions
     const handleSubmit = e => {
         e.preventDefault()
+        // Check if all fields are filled
         if (
             !(
                 getValueFromRef(titleField) &&
@@ -50,7 +51,9 @@ const AddForm = ({ currencies }) => {
         ) {
             setFieldsError(true)
         }
+        // Remove empty strings from url list
         fixImagesURL()
+        // Send offer data to the API
         addOfferToDB()
     }
 

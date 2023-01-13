@@ -4,13 +4,13 @@ import styles from '../../styles/common/Loader.module.scss'
 import { initFirebase } from '../../utils/firebase'
 import { getAuth } from 'firebase/auth'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
 const Loader = () => {
     initFirebase()
     const auth = getAuth()
-    const [user, loading, error] = useAuthState(auth)
+    const [user, loading] = useAuthState(auth)
 
     const router = useRouter()
 

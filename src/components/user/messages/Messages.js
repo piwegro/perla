@@ -1,5 +1,8 @@
+'use client'
+
 import MessageItem from './MessageItem'
 
+/** List of messages in conversation */
 const Messages = () => {
     return (
         <>
