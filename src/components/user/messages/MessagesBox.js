@@ -22,7 +22,6 @@ const MessagesBox = ({ selected }) => {
     // Fetch user's conversations
     useEffect(() => {
         if (user) {
-            console.log(user.accessToken)
             fetch(`${process.env.NEXT_PUBLIC_API_URL}/messages/users`, {
                 headers: {
                     Authorization: `Bearer ${user.accessToken}`,

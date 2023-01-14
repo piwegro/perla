@@ -13,28 +13,6 @@
     box-shadow: var(--box-shadow);
 }
 
-.messagesColumn {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-
-    margin-top: auto;
-    grid-column: span 8;
-
-    padding: 2rem 2rem 2rem 1rem;
-}
-
-.messagesScrollBox {
-    display: flex;
-    flex-direction: column-reverse;
-    gap: 1rem;
-
-    padding: 1rem 0;
-
-    max-height: 60vh;
-    overflow: auto;
-}
-
 .conversationsColumn {
     display: flex;
     flex-direction: column;
@@ -56,6 +34,43 @@
 
         margin: 0 0.5rem;
     }
+}
+
+.messagesColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    margin-top: auto;
+    grid-column: span 8;
+
+    padding: 2rem 2rem 2rem 1rem;
+}
+
+@media screen and (max-width: 992px) {
+    .conversationsColumn {
+        grid-column: span 12;
+        border-right: none;
+    }
+
+    .messagesColumn {
+        grid-column: span 12;
+    }
+
+    .messagesScrollBox {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+}
+
+.messagesScrollBox {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1rem;
+
+    padding: 1rem 0;
+
+    max-height: 60vh;
+    overflow: auto;
 }
 
 .conversations {
