@@ -35,8 +35,6 @@ const AddForm = ({ currencies }) => {
     // Wrapper for ref.current.value
     const getValueFromRef = ref => ref.current.value
 
-    // TODO: chyba zrobione, ale trzeba sprawdzić
-
     // Handles submit of the form and invokes fixImagesURL and addOfferToDB functions
     const handleSubmit = e => {
         e.preventDefault()
