@@ -5,6 +5,7 @@ import styles from '../../../styles/pages/Account.module.scss'
 import AcceptedCurrencies from '../../../components/user/AcceptedCurrencies'
 import Opinions from '../../../components/user/Opinions'
 import UserOffers from '../../../components/user/UserOffers'
+import Button from '../../../components/common/Button'
 
 const getUser = async id => {
     try {
@@ -55,6 +56,9 @@ const Page = async ({ params }) => {
                             <AcceptedCurrencies currencies={userData.accepted_currencies} />
                             <h3>Opinie o użytkowniku</h3>
                             <Opinions id={params.id} />
+                            <Button element={'anchor'} href={`/messages/${params.id}`}>
+                                Wyślij wiadomość
+                            </Button>
                         </div>
                     </div>
                 </div>

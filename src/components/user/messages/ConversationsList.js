@@ -9,7 +9,7 @@ const ConversationsList = ({ conversations, selected }) => {
         <div className={styles.conversations}>
             {conversations.length > 0
                 ? conversations.map((conversation, i) => (
-                      <ConversationItem conversation={conversation} key={i} />
+                      <ConversationItem conversation={conversation} key={i} selected={selected} />
                   ))
                 : 'Brak rozmów'}
         </div>
