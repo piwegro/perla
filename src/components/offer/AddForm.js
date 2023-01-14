@@ -27,6 +27,7 @@ const AddForm = ({ currencies }) => {
     const locationField = useRef(null)
     const [images, setImages] = useState([])
     const [imagesURL, setImagesURL] = useState([])
+    const [imagesIDs, setImagesIDs] = useState([])
 
     const [addError, setAddError] = useState(false)
     const [fieldsError, setFieldsError] = useState(false)
@@ -53,6 +54,8 @@ const AddForm = ({ currencies }) => {
         }
         // Remove empty strings from url list
         fixImagesURL()
+        // Get IDs from URLs
+        convertToIDs()
         // Send offer data to the API
         addOfferToDB()
     }
@@ -61,10 +64,9 @@ const AddForm = ({ currencies }) => {
     const passData = (id, data) => {
         setImages(prev => {
             prev[id] = data
-            console.log(prev)
             return prev
         })
-        uploadImage(id, data)
+        uploadImage(id, data.split(',')[1])
     }
 
     // Removes empty strings from list of images
@@ -75,9 +77,18 @@ const AddForm = ({ currencies }) => {
         })
     }
 
+    const convertToIDs = () => {
+        const temp = []
+
+        for (let el of imagesURL) {
+            if (el?.image_id) temp.push(el.image_id)
+        }
+        setImagesIDs(temp)
+    }
+
     // Uploads image to API
     const uploadImage = (id, image) => {
-        fetch(`${process.env.NEXT_PUBLIC_API_URL}/images`, {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/image`, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${user.accessToken}`,
@@ -96,13 +107,10 @@ const AddForm = ({ currencies }) => {
                     throw new Error(data.error)
                 }
 
-                console.log(data)
                 setImagesURL(prev => {
                     prev[id] = JSON.parse(data)
                     return prev
                 })
-
-                console.log(imagesURL)
             })
             .catch(e => {
                 console.error(e)
@@ -112,15 +120,14 @@ const AddForm = ({ currencies }) => {
     // Adds offer to database
     const addOfferToDB = () => {
         const postData = {
-            seller_id: user.uid,
             currency: getValueFromRef(currencyField),
             price: parseInt(getValueFromRef(priceField)),
             title: getValueFromRef(titleField),
             description: getValueFromRef(descriptionField),
             location: getValueFromRef(locationField),
             images:
-                imagesURL.length > 0
-                    ? imagesURL
+                imagesIDs.length > 0
+                    ? imagesIDs
                     : [
                           {
                               image_id: 1,
