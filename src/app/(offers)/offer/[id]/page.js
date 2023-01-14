@@ -98,6 +98,17 @@ const Page = async ({ params }) => {
                             </span>
 
                             <p>{offerData.description}</p>
+
+                            <hr />
+                            <h2>Cena</h2>
+
+                            <div className={styles.prices}>
+                                {offerData.price.map(price => (
+                                    <span>
+                                        {price.amount} {price.currency.name}
+                                    </span>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -263,3 +263,12 @@
         position: absolute;
     }
 }
+
+.prices {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    width: 100%;
+    overflow: auto;
+    font-size: 1.25rem;
+}
