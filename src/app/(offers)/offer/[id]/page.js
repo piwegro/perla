@@ -52,7 +52,9 @@ const Page = async ({ params }) => {
                                 <div>
                                     <h3>{offerData.seller?.name}</h3>
                                 </div>
-                                <Button element={'anchor'} href={`/messages/${id}`}>
+                                <Button
+                                    element={'anchor'}
+                                    href={`/messages/${offerData.seller?.uid}`}>
                                     Wyślij wiadomość
                                 </Button>
 
