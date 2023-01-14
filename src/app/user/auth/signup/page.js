@@ -65,9 +65,6 @@ function Page() {
     }
 
     const addUserToDatabase = user => {
-        console.log('Adding user', user)
-        console.log('API', `${process.env.NEXT_PUBLIC_API_URL}/user/${user.uid}`)
-
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/${user.uid}`, {
             method: 'PUT',
         })
@@ -77,9 +74,6 @@ function Page() {
                     console.log('API ERROR', res.statusText)
                 }
                 return res.json()
-            })
-            .then(data => {
-                console.log('API RESP', data)
             })
             .catch(() => {
                 console.log('DB ERROR')

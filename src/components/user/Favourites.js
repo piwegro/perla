@@ -30,7 +30,6 @@ const Favourites = () => {
                     return res.json()
                 })
                 .then(data => {
-                    console.log(data)
                     setOffers(data)
                 })
     }, [user])

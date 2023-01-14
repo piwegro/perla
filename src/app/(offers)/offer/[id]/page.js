@@ -104,7 +104,7 @@ const Page = async ({ params }) => {
 
                             <div className={styles.prices}>
                                 {offerData.price.map(price => (
-                                    <span>
+                                    <span key={price.currency.symbol}>
                                         {price.amount} {price.currency.name}
                                     </span>
                                 ))}
