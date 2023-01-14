@@ -5,8 +5,10 @@ import { useEffect, useState } from 'react'
 
 /** List of messages in conversation */
 const Messages = ({ user, selected, refresh }) => {
+    // Set state
     const [messages, setMessages] = useState([])
 
+    // Fetch messages
     useEffect(() => {
         if (user) {
             fetch(`${process.env.NEXT_PUBLIC_API_URL}/messages/${selected}`, {

@@ -4,7 +4,7 @@ import Loader from '../../../components/common/Loader'
 import MessagesBox from '../../../components/user/messages/MessagesBox'
 
 const Page = async ({ params }) => {
-    const user_id = params.user_id
+    const user_id = params.user_id // Get user ID from params
     return (
         <>
             <Loader />

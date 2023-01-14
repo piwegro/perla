@@ -2,7 +2,6 @@ import Loader from '../../../../components/common/Loader'
 import Hero from '../../../../components/common/Hero'
 import { container } from '../../../../styles/common/Grid.module.scss'
 import styles from '../../../../styles/pages/user/Reviews.module.scss'
-import Favourites from '../../../../components/user/Favourites'
 import Button from '../../../../components/common/Button'
 
 /** Fetch user info from API */
@@ -40,9 +39,9 @@ const getReviews = async id => {
 }
 
 const Page = async ({ params }) => {
-    const id = params.id
-    const userReviews = await getReviews(id)
-    const user = await getUser(id)
+    const id = params.id // Get user ID from params
+    const userReviews = await getReviews(id) // Get user reviews from API
+    const user = await getUser(id) // Get user data from API
 
     return (
         <>

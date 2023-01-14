@@ -2,8 +2,9 @@ import styles from '../../styles/common/Hero.module.scss'
 import { container } from '../../styles/common/Grid.module.scss'
 import SearchBox from '../search/SearchBox'
 
+/** Hero component */
 const Hero = ({ page, children, showSearch, center }) => {
-    let showSearchBox = (showSearch ?? false) || page === 'main'
+    let showSearchBox = (showSearch ?? false) || page === 'main' // Show search box if showSearch is true or page is main
     return (
         <div className={styles.hero}>
             <div className={`${container} ${center ? styles.center : ''}`}>
@@ -14,6 +15,7 @@ const Hero = ({ page, children, showSearch, center }) => {
     )
 }
 
+/** Main page hero component */
 const MainPageHero = () => {
     return (
         <>

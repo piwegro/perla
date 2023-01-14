@@ -3,6 +3,7 @@ import Loader from '../../../../../components/common/Loader'
 import { container } from '../../../../../styles/common/Grid.module.scss'
 import ReviewForm from '../../../../../components/user/ReviewForm'
 
+/** Fetch user data from API */
 const getUser = async id => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/${id}`)

@@ -17,8 +17,11 @@ import Notification from '../../../../components/auth/Notification'
 import convertFirebaseError from '../../../../utils/firebaseErrorConverter'
 
 function Page() {
+    // Initialize Firebase
     initFirebase()
+    // Get auth instance
     const auth = getAuth()
+    // Create states
     const [createUserWithEmailAndPassword, user, loading, error] =
         useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true })
     const [updateProfile, updating, updateError] = useUpdateProfile(auth)
@@ -26,21 +29,26 @@ function Page() {
     const [user2, loading2, error2] = useAuthState(auth)
     const [fieldsError, setFieldsError] = useState(false)
 
+    // Get router
     const router = useRouter()
 
+    // Redirect to home page if user is logged in
     useEffect(() => {
         if (error || error2 || updateError || dbAddError) return
 
         if (!loading && (user || user2)) router.push('/')
     }, [loading, loading2])
 
+    // Create refs
     const usernameField = useRef(null)
     const emailField = useRef(null)
     const passwordField = useRef(null)
 
+    /** Handles form submit */
     const handleSubmit = e => {
-        e.preventDefault()
+        e.preventDefault() // prevent default behaviour
 
+        // Check if fields are empty
         const [username, email, password] = [
             usernameField.current.value,
             emailField.current.value,
@@ -54,9 +62,11 @@ function Page() {
             setFieldsError(false)
         }
 
+        // Create user
         createUserWithEmailAndPassword(emailField.current.value, passwordField.current.value).then(
             userData => {
                 if (userData)
+                    // Update user profile to include username
                     updateProfile({ displayName: username }).then(() => {
                         addUserToDatabase(userData.user)
                     })
@@ -64,6 +74,7 @@ function Page() {
         )
     }
 
+    /** Adds user to database */
     const addUserToDatabase = user => {
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/${user.uid}`, {
             method: 'PUT',

@@ -7,7 +7,8 @@ import fetch from 'node-fetch'
 /** Message input component for messages page */
 const MessageInput = ({ user, receiver, refresh }) => {
     const handleSubmit = e => {
-        e.preventDefault()
+        e.preventDefault() // Prevent default behaviour
+        // Send message to the server
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/message`, {
             method: 'POST',
             headers: {
@@ -32,7 +33,7 @@ const MessageInput = ({ user, receiver, refresh }) => {
             })
     }
 
-    const messageField = useRef(null)
+    const messageField = useRef(null) // Set ref
 
     return (
         <form className={messageInput} onSubmit={handleSubmit}>

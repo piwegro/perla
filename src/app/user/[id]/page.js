@@ -7,6 +7,7 @@ import Opinions from '../../../components/user/Opinions'
 import UserOffers from '../../../components/user/UserOffers'
 import Button from '../../../components/common/Button'
 
+/** Fetch user data from API */
 const getUser = async id => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/${id}`)
@@ -23,12 +24,13 @@ const getUser = async id => {
     }
 }
 
+/** Preload user data to make the load time faster */
 export const preload = id => {
     void getUser(id)
 }
 
 const Page = async ({ params }) => {
-    const userData = await getUser(params.id)
+    const userData = await getUser(params.id) // Get user data from API
 
     return (
         <>

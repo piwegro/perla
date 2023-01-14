@@ -7,13 +7,19 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
+/** Loader component */
 const Loader = () => {
+    // Initialize Firebase
     initFirebase()
+    // Get auth instance
     const auth = getAuth()
+    // Set states
     const [user, loading] = useAuthState(auth)
 
+    // Get router
     const router = useRouter()
 
+    // Redirect to home page if user is not logged in
     useEffect(() => {
         if (!loading && !user) {
             router.push('/user/auth/signin')

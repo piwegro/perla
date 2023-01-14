@@ -25,7 +25,6 @@ export const preload = id => {
     void getSearchResults(id)
 }
 
-// TODO: liczba stron i paginacja
 const Page = async ({ params }) => {
     const searchResults = await getSearchResults(params.query) // Get search results
     const searchQuery = decodeURI(params.query) // Get search query

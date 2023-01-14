@@ -2,7 +2,7 @@ import styles from '../../styles/pages/auth/Notification.module.scss'
 
 /** Component which returns notifications/error messages */
 const Notification = ({ children, type }) => {
-    const types = ['success', 'error', 'warning']
+    const types = ['success', 'error', 'warning'] // Available types
     return (
         <div
             className={`${styles.notification} ${

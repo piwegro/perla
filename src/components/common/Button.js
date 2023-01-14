@@ -4,9 +4,11 @@ import openSans from '../../styles/common/Font'
 
 import styles from '../../styles/common/Button.module.scss'
 
+/** Button component */
 const Button = props => {
-    const { element, href, children, type } = props
+    const { element, href, children, type } = props // Get props
 
+    // Return button with correct element
     switch (element) {
         case 'anchor':
             return (

@@ -1,3 +1,4 @@
+/** Converts firebase error codes to readable messages */
 const convertFirebaseError = error => {
     switch (error.code) {
         case 'auth/user-not-found':

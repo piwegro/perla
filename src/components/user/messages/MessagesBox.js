@@ -14,7 +14,7 @@ const MessagesBox = ({ selected }) => {
     // Initialize Firebase
     initFirebase()
     const auth = getAuth()
-    const [user, loading, error] = useAuthState(auth)
+    const [user] = useAuthState(auth)
     const [conversations, setConversations] = useState([])
     const [conversationsLoaded, setConversationsLoaded] = useState(false)
     const [refresh, setRefresh] = useState(false)
@@ -44,6 +44,7 @@ const MessagesBox = ({ selected }) => {
     }, [user])
 
     const refreshCallback = () => {
+        // Refresh messages
         setRefresh(p => !p)
     }
 

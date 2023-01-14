@@ -7,12 +7,14 @@ import { useRouter } from 'next/navigation'
 
 /** SearchBox component */
 const SearchBox = () => {
+    // Get refs
     const inputEl = useRef()
+    // Get router
     const router = useRouter()
 
     // Handles form submit
     const handleSubmit = e => {
-        e.preventDefault()
+        e.preventDefault() // Prevent default behaviour
 
         if (inputEl.current.value.length > 0)
             router.push(`/search/${encodeURI(inputEl.current.value)}`) // Redirect to search page with query

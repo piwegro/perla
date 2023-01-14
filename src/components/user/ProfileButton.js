@@ -8,8 +8,11 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 const ProfileButton = () => {
     // Initialize Firebase
     initFirebase()
+    // Get auth
     const auth = getAuth()
-    const [user, loading, error] = useAuthState(auth)
+    // Get user
+    const [user] = useAuthState(auth)
+
     return (
         <>
             {user ? (
