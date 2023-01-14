@@ -45,7 +45,6 @@ const Page = async ({ params }) => {
 
     return (
         <>
-            <Loader />
             {user?.name ? (
                 <>
                     <Hero center={true}>
