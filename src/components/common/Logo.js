@@ -1,3 +1,4 @@
+/** Logo component */
 const Logo = () => {
     return (
         <svg

@@ -9,12 +9,15 @@ import { useRouter } from 'next/navigation'
 const LogOutButton = () => {
     // Initialize Firebase
     initFirebase()
+    // Get auth instance
     const auth = getAuth()
 
+    // Get router
     const router = useRouter()
 
     /** Logs out the user */
     const logOut = () => {
+        // Sign out
         signOut(auth).then(() => {
             router.push('/user/auth/signin')
         })

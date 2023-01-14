@@ -11,21 +11,29 @@ import { useRouter } from 'next/navigation'
 import Notification from '../../../../components/auth/Notification'
 import convertFirebaseError from '../../../../utils/firebaseErrorConverter'
 
-function Page(props) {
+function Page() {
+    // Initialize Firebase
     initFirebase()
+    // Get auth instance
     const auth = getAuth()
+    // Create states
     const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth)
-    const [user2, loading2, error2] = useAuthState(auth)
+    const [user2, loading2] = useAuthState(auth)
 
+    // Create refs
     const emailField = useRef(null)
     const passwordField = useRef(null)
 
+    // Get router
     const router = useRouter()
 
-    const handleSubmit = () => {
-        signInWithEmailAndPassword(emailField.current.value, passwordField.current.value)
+    /** Handles form submit */
+    const handleSubmit = e => {
+        e.preventDefault() // prevent default behaviour
+        signInWithEmailAndPassword(emailField.current.value, passwordField.current.value) // sign in
     }
 
+    /** Redirects to home page if user is logged in */
     useEffect(() => {
         if (!loading2 && user2) router.push('/')
     }, [user2, loading2, user, loading])
@@ -39,11 +47,7 @@ function Page(props) {
                         <Notification type={'error'}>{convertFirebaseError(error)}</Notification>
                     ) : null}
 
-                    <form
-                        onSubmit={e => {
-                            e.preventDefault()
-                            handleSubmit()
-                        }}>
+                    <form onSubmit={handleSubmit}>
                         <div className={stylesCommon.formGroup}>
                             <label htmlFor='email'>Adres e-mail</label>
                             <input type={'email'} id={'email'} ref={emailField} />

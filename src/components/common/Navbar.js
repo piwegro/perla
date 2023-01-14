@@ -9,6 +9,7 @@ import Button from './Button'
 
 import styles from '../../styles/common/Navbar.module.scss'
 
+// Navbar items
 const NAV_ITEMS = [
     {
         label: 'Wiadomości',
@@ -29,7 +30,9 @@ const NAV_ITEMS = [
     },
 ]
 
+/** Navbar component */
 const Navbar = () => {
+    // Set states
     const [expanded, setExpanded] = useState(false)
     return (
         <div className={styles.navbar}>
@@ -45,6 +48,7 @@ const Navbar = () => {
     )
 }
 
+/** Desktop navbar component */
 const DesktopNav = () => {
     return (
         <div className={styles.desktopNav}>
@@ -69,6 +73,7 @@ const DesktopNav = () => {
     )
 }
 
+/** Mobile navbar component */
 const MobileNav = expanded => {
     return (
         <div className={`${styles.mobileNav} ${expanded.expanded ? styles.mobileExpanded : null}`}>
@@ -83,6 +88,7 @@ const MobileNav = expanded => {
     )
 }
 
+/** Button to expand the mobile navbar */
 const ExpandButton = props => {
     return (
         <div className={styles.expandButton}>

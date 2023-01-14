@@ -14,8 +14,10 @@ const FavouriteButton = ({ offerID }) => {
     const auth = getAuth()
     // Get the user
     const [user] = useAuthState(auth)
+    // Set states
     const [isFavourite, setIsFavourite] = useState(false)
 
+    // Check if offer is in user's favourites
     useEffect(() => {
         if (user) {
             fetch(`${process.env.NEXT_PUBLIC_API_URL}/favorites`, {
@@ -49,6 +51,7 @@ const FavouriteButton = ({ offerID }) => {
     /** Toggles favourite button */
     const toggle = async () => {
         if (user)
+            // Send request to API
             fetch(`${process.env.NEXT_PUBLIC_API_URL}/favorites/${offerID}`, {
                 method: isFavourite ? 'DELETE' : 'PUT',
                 headers: {

@@ -10,8 +10,11 @@ import OfferList from '../search/OfferList'
 const OwnOffers = () => {
     // Initialize Firebase
     initFirebase()
+    // Get auth
     const auth = getAuth()
+    // Get user
     const [user] = useAuthState(auth)
+    // Set state
     const [offers, setOffers] = useState([])
 
     // Fetch user's offers from API

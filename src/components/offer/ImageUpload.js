@@ -9,16 +9,16 @@ const UploadBox = ({ id, passData }) => {
 
     // Handles file read
     const handleFileRead = e => {
-        const content = e.target.result
-        setImageURL(content)
+        const content = e.target.result // Get file content
+        setImageURL(content) // Set image URL
         passData(id, content) // passes data to the form
     }
 
     /** Handles event when user picks image */
     const handleFileChosen = e => {
-        const fileReader = new window.FileReader()
+        const fileReader = new window.FileReader() // Create file reader
 
-        const file = e.target.files[0]
+        const file = e.target.files[0] // Get file
         try {
             // Reads file and invokes handleFileRead when done
             fileReader.onloadend = handleFileRead

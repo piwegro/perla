@@ -14,7 +14,7 @@ const MessagesBox = ({ selected }) => {
     // Initialize Firebase
     initFirebase()
     const auth = getAuth()
-    const [user, loading, error] = useAuthState(auth)
+    const [user] = useAuthState(auth)
     const [conversations, setConversations] = useState([])
     const [conversationsLoaded, setConversationsLoaded] = useState(false)
     const [refresh, setRefresh] = useState(false)
@@ -22,7 +22,6 @@ const MessagesBox = ({ selected }) => {
     // Fetch user's conversations
     useEffect(() => {
         if (user) {
-            console.log(user.accessToken)
             fetch(`${process.env.NEXT_PUBLIC_API_URL}/messages/users`, {
                 headers: {
                     Authorization: `Bearer ${user.accessToken}`,
@@ -45,6 +44,7 @@ const MessagesBox = ({ selected }) => {
     }, [user])
 
     const refreshCallback = () => {
+        // Refresh messages
         setRefresh(p => !p)
     }
 

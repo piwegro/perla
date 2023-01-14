@@ -18,13 +18,17 @@ const AddForm = ({ currencies }) => {
     const auth = getAuth()
     // Get the user
     const [user, loading] = useAuthState(auth)
+    // Get router
     const router = useRouter()
 
+    // Set refs
     const titleField = useRef(null)
     const descriptionField = useRef(null)
     const priceField = useRef(null)
     const currencyField = useRef(null)
     const locationField = useRef(null)
+
+    // Set states
     const [images, setImages] = useState([])
     const [imagesURL, setImagesURL] = useState([])
     const [imagesIDs, setImagesIDs] = useState([])
@@ -75,6 +79,7 @@ const AddForm = ({ currencies }) => {
         })
     }
 
+    // Converts URLs to IDs
     const convertToIDs = () => {
         const temp = []
 
@@ -135,7 +140,7 @@ const AddForm = ({ currencies }) => {
                           },
                       ],
         }
-
+        // Send data to API
         fetch(`${process.env.NEXT_PUBLIC_API_URL}/offer`, {
             method: 'POST',
             headers: {

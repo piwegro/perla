@@ -10,8 +10,11 @@ import OfferList from '../search/OfferList'
 const Favourites = () => {
     // Initialize Firebase
     initFirebase()
+    // Get auth
     const auth = getAuth()
+    // Get user
     const [user] = useAuthState(auth)
+    // Set state
     const [offers, setOffers] = useState([])
 
     // Fetch user's offers from API
@@ -30,7 +33,6 @@ const Favourites = () => {
                     return res.json()
                 })
                 .then(data => {
-                    console.log(data)
                     setOffers(data)
                 })
     }, [user])

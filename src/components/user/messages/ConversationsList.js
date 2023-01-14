@@ -7,11 +7,13 @@ import ConversationItem from './ConversationItem'
 const ConversationsList = ({ conversations, selected }) => {
     return (
         <div className={styles.conversations}>
-            {conversations.length > 0
-                ? conversations.map((conversation, i) => (
-                      <ConversationItem conversation={conversation} key={i} selected={selected} />
-                  ))
-                : 'Brak rozmów'}
+            {conversations.length > 0 ? (
+                conversations.map((conversation, i) => (
+                    <ConversationItem conversation={conversation} key={i} selected={selected} />
+                ))
+            ) : (
+                <span className={styles.noConv}>Brak rozmów</span>
+            )}
         </div>
     )
 }

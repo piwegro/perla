@@ -9,22 +9,23 @@ import Button from '../../../../components/common/Button'
 import Notification from '../../../../components/auth/Notification'
 import convertFirebaseError from '../../../../utils/firebaseErrorConverter'
 
-function Page(props) {
+function Page() {
+    // Initialize Firebase
     initFirebase()
+    // Get auth instance
     const auth = getAuth()
-    const [sendPasswordResetEmail, sending, error] = useSendPasswordResetEmail(auth)
+    // Create states
+    const [sendPasswordResetEmail, , error] = useSendPasswordResetEmail(auth)
     const [success, setSuccess] = useState(false)
 
     const emailField = useRef(null)
 
-    const handleSubmit = async () => {
+    /** Handles form submit */
+    const handleSubmit = async e => {
+        e.preventDefault()
         const response = await sendPasswordResetEmail(emailField.current.value)
         if (response) setSuccess(true)
     }
-
-    // Firebase error codes
-    // auth/user-not-found
-    // auth/invalid-email
 
     return (
         <div className={stylesCommon.wrapper}>
@@ -32,16 +33,14 @@ function Page(props) {
                 <div className={stylesCommon.authBox}>
                     <h2>Resetowanie hasła</h2>
                     {success ? (
-                        <Notification type={'success'}>Wysłano link do zresetowania hasła.</Notification>
+                        <Notification type={'success'}>
+                            Wysłano link do zresetowania hasła.
+                        </Notification>
                     ) : null}
                     {error ? (
                         <Notification type={'error'}>{convertFirebaseError(error)}</Notification>
                     ) : null}
-                    <form
-                        onSubmit={e => {
-                            e.preventDefault()
-                            handleSubmit()
-                        }}>
+                    <form onSubmit={handleSubmit}>
                         <div className={stylesCommon.formGroup}>
                             <label htmlFor='email'>Adres e-mail</label>
                             <input type={'email'} id={'email'} ref={emailField} />

@@ -1,5 +1,6 @@
 import DefaultTags from '../../../defaultTags'
 
+/** Fetch user data from API */
 const getUser = async id => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/${id}`)
@@ -17,7 +18,7 @@ const getUser = async id => {
 }
 
 export default async function Head({ params }) {
-    const user = await getUser(params.id)
+    const user = await getUser(params.id) // Get user data from API
     return (
         <>
             <DefaultTags />

@@ -2,7 +2,7 @@ import Loader from '../../../../components/common/Loader'
 import Hero from '../../../../components/common/Hero'
 import { container } from '../../../../styles/common/Grid.module.scss'
 import styles from '../../../../styles/pages/user/Reviews.module.scss'
-import Favourites from '../../../../components/user/Favourites'
+import Button from '../../../../components/common/Button'
 
 /** Fetch user info from API */
 const getUser = async id => {
@@ -21,8 +21,8 @@ const getUser = async id => {
     }
 }
 
-/** Fetches opinions from API */
-const getOpinions = async id => {
+/** Fetches reviews from API */
+const getReviews = async id => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reviews/${id}`)
 
@@ -38,21 +38,11 @@ const getOpinions = async id => {
     }
 }
 
-// TODO: wyświetlanie tych opinii
-// [
-//     {
-//         review: 'testowa opinia',
-//         reviewee_id: 'TXbKwxFPr5YJ8WG8nxYpgmTVshG2',
-//         reviewer_id: 'ojsCm4icLKXwQQEvNGOemmuYg2w1'
-//     }
-// ]
-
 const Page = async ({ params }) => {
-    const id = params.id
-    const userOpinions = await getOpinions(id)
-    const user = await getUser(id)
+    const id = params.id // Get user ID from params
+    const userReviews = await getReviews(id) // Get user reviews from API
+    const user = await getUser(id) // Get user data from API
 
-    console.log(userOpinions)
     return (
         <>
             <Loader />
@@ -63,9 +53,29 @@ const Page = async ({ params }) => {
                     </Hero>
                     <div className={container}>
                         <div className={styles.content}>
-                            <h2>Lista ogłoszeń</h2>
+                            <div className={styles.titleRow}>
+                                <h2>Lista opinii</h2>
+                                <Button element={'anchor'} href={`/user/${id}/reviews/add`}>
+                                    Dodaj opinię
+                                </Button>
+                            </div>
+                            {userReviews.length > 0 ? (
+                                <div className={styles.reviews}>
+                                    {userReviews.map((review, i) => {
+                                        return (
+                                            <div
+                                                key={`${review.reviewer_id}-${i}`}
+                                                className={styles.review}>
+                                                {review.review}
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            ) : (
+                                <span>Brak opinii</span>
+                            )}
                         </div>
-                    </div>{' '}
+                    </div>
                 </>
             ) : (
                 <Hero center={true}>
