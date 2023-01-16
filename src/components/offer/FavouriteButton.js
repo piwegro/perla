@@ -34,8 +34,6 @@ const FavouriteButton = ({ offerID }) => {
                 })
                 .then(data => {
                     for (let offer of data) {
-                        console.log(offer.offer_id, offerID)
-                        console.log(offer)
                         if (offer.offer_id == offerID) {
                             setIsFavourite(true)
                             return

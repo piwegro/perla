@@ -94,7 +94,7 @@ const Page = async ({ params }) => {
                                 <FavouriteButton offerID={id} />
                             </div>
                             <span className={styles.creationDate}>
-                                Data dodania: {new Date('2022-10-31T18:32:19').toLocaleString()}
+                                Data dodania: {new Date(offerData?.created_at).toLocaleString()}
                             </span>
 
                             <p>{offerData.description}</p>

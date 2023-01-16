@@ -24,8 +24,6 @@ const Carousel = props => {
     const previousImage = () => {
         const imageCount = offerData.images.length
 
-        console.log(currentImage)
-
         if (currentImage - 1 < 0) setCurrentImage(imageCount - 1)
         else {
             setCurrentImage(v => v - 1)
