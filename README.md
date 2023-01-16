@@ -2,7 +2,7 @@
 
 [Piwegro.lol](https://piwegro.lol) frontend app
 
-Before starting the app, you need to fill the `.env` file with the correct values.
+Before starting the app, you need to fill the `.env` file with the correct values for Firebase API and set the URL for the Piwegro API.
 
 ## Using Docker
 
