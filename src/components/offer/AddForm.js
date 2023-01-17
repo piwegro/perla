@@ -29,7 +29,6 @@ const AddForm = ({ currencies }) => {
     const locationField = useRef(null)
 
     // Set states
-    const [images, setImages] = useState([])
     const [imagesURL, setImagesURL] = useState([])
     const [imagesIDs, setImagesIDs] = useState([])
 
@@ -64,10 +63,6 @@ const AddForm = ({ currencies }) => {
 
     // Callback from image upload component
     const passData = (id, data) => {
-        setImages(prev => {
-            prev[id] = data
-            return prev
-        })
         uploadImage(id, data.split(',')[1])
     }
 

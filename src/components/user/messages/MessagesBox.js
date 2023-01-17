@@ -16,7 +16,6 @@ const MessagesBox = ({ selected }) => {
     const auth = getAuth()
     const [user] = useAuthState(auth)
     const [conversations, setConversations] = useState([])
-    const [conversationsLoaded, setConversationsLoaded] = useState(false)
     const [refresh, setRefresh] = useState(false)
 
     // Fetch user's conversations
@@ -35,7 +34,6 @@ const MessagesBox = ({ selected }) => {
                 })
                 .then(data => {
                     setConversations(data)
-                    setConversationsLoaded(true)
                 })
                 .catch(e => {
                     console.error('aaa', e)

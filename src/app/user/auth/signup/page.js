@@ -24,7 +24,7 @@ function Page() {
     // Create states
     const [createUserWithEmailAndPassword, user, loading, error] =
         useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true })
-    const [updateProfile, updating, updateError] = useUpdateProfile(auth)
+    const [updateProfile, , updateError] = useUpdateProfile(auth)
     const [dbAddError, setDbAddError] = useState(false)
     const [user2, loading2, error2] = useAuthState(auth)
     const [fieldsError, setFieldsError] = useState(false)

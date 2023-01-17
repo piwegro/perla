@@ -1,4 +1,3 @@
-import Loader from '../../../../components/common/Loader'
 import Hero from '../../../../components/common/Hero'
 import { container } from '../../../../styles/common/Grid.module.scss'
 import styles from '../../../../styles/pages/user/Reviews.module.scss'
